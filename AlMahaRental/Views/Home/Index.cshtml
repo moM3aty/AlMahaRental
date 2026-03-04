@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "الرئيسية";
+}
+
+<header class="hero-header">
+    <div class="swiper headerSwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('/images/slider-1.png');"></div>
+                <div class="container h-100 d-flex align-items-center justify-content-center">
+                    <div class="hero-content text-white">
+                        <h3 class="heading-title" data-ar="مرحبا بك في شركة المها" data-en="Welcome to Al Maha Company">
+                            مرحبا بك في شركة المها
+                        </h3>
+                        <h1 class="display-4 fw-bolder" data-ar="هل ترغب في توفير المزيد على استئجار سيارتك؟" data-en="Do you want to save more on your car rental?">
+                            هل ترغب في توفير المزيد على استئجار سيارتك؟
+                        </h1>
+                        <p class="mx-auto" data-ar="سواء كنت تخطط لعطلة نهاية أسبوع، أو رحلة عمل، أو تحتاج فقط إلى سيارة موثوقة ليوم واحد، نحن نوفر لك مجموعة واسعة من السيارات التي تناسب جميع احتياجاتك." data-en="Whether you are planning a weekend, a business trip, or just need a reliable car for a day, we provide a wide range of cars to suit all your needs.">
+                            سواء كنت تخطط لعطلة نهاية أسبوع، أو رحلة عمل، أو تحتاج فقط إلى سيارة موثوقة ليوم واحد، نحن نوفر لك مجموعة واسعة من السيارات التي تناسب جميع احتياجاتك.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3 justify-content-center align-items-center">
+                            <a asp-controller="Home" asp-action="Services" class="btn btn-main mt-3" data-ar="اكتشف الخدمات" data-en="Discover Services">اكتشف الخدمات</a>
+                            <a asp-controller="Home" asp-action="AboutUs" class="btn btn-second mt-3" data-ar="تعلم المزيد" data-en="Learn More">تعلم المزيد</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- يمكن إضافة باقي الـ slides هنا بنفس الطريقة -->
+        </div>
+    </div>
+</header>
+
+<section class="booking" id="manageReserve">
+    <div class="booking-container py-3">
+        <div class="container-fluid">
+            <!-- سيتم تحويل نموذج البحث هذا إلى فورم ديناميكي في الدفعة الخاصة بالحجوزات -->
+            <div class="row g-4">
+                <div class="col-lg-6 justify-content-start">
+                    <div class="booking-content">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" data-tab="daily" data-ar="يومي" data-en="Daily">يومي</button>
+                            <button class="tab-btn" data-tab="weekly" data-ar="اسبوعي" data-en="Weekly">اسبوعي</button>
+                            <button class="tab-btn" data-tab="monthly" data-ar="فليكس ( للتأجير الشهري )" data-en="Flex (Monthly Rental)">فليكس ( للتأجير الشهري )</button>
+                        </div>
+                        <form class="booking-form" asp-controller="Booking" asp-action="Search">
+                            <!-- حقول البحث عن سيارة -->
+                            <div class="row g-4 daily-reserve">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label data-ar="موقع الاستلام" data-en="Pickup Location">موقع الاستلام</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <input type="text" class="form-control" placeholder="اختر فرع الاستلام" name="PickupLocation">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label data-ar="موقع التسليم" data-en="Drop-off Location">موقع التسليم</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <input type="text" class="form-control" placeholder="اختر فرع التسليم" name="DropoffLocation">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label data-ar="تاريخ الاستلام" data-en="Pickup Date">تاريخ الاستلام</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-calendar"></i>
+                                            <input type="text" class="form-control date-picker" id="pickup-date" name="PickupDate">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label data-ar="تاريخ التسليم" data-en="Return Date">تاريخ التسليم</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-calendar"></i>
+                                            <input type="text" class="form-control date-picker" id="return-date" name="ReturnDate">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-next text-center text-white" data-ar="بحث" data-en="Search">بحث</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-4 p-3 justify-content-center">
+                        <div class="d-flex gap-3 align-items-center mb-4 justify-content-center">
+                            <h2 data-ar="استئجار سيارة في ثلاث خطوات بسيطة" data-en="Rent a Car in 3 Simple Steps">
+                                استئجار سيارة في ثلاث خطوات بسيطة
+                            </h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="book-card">
+                                <div class="icon"><i class="fa-solid fa-car-side"></i></div>
+                                <h3><span class="text-purple">01.</span> <span data-ar="اختر سيارتك واحجز" data-en="Choose Your Car and Book">اختر سيارتك واحجز</span></h3>
+                                <p class="text-muted fw-semibold">حدد التواريخ ومكان الاستلام، واستعرض تشكيلتنا المتنوعة من السيارات.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="book-card">
+                                <div class="icon"><i class="fa-solid fa-credit-card"></i></div>
+                                <h3><span class="text-purple">02.</span> <span data-ar="تأكيد الحجز والدفع" data-en="Confirm Booking & Payment">تأكيد الحجز والدفع</span></h3>
+                                <p class="text-muted fw-semibold">قم بإتمام حجزك بسهولة وأمان عبر الإنترنت مع تسعير شفاف.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="book-card">
+                                <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                                <h3><span class="text-purple">03.</span> <span data-ar="استلام السيارة والانطلاق" data-en="Pick Up the Car & Go">استلام السيارة والانطلاق</span></h3>
+                                <p class="text-muted fw-semibold">قدّم رخصة القيادة وتأكيد الحجز في مكتبنا، ثم انطلق بثقة نحو وجهتك.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cards bg-white">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <a asp-controller="Home" asp-action="Services" class="card card-1 text-decoration-none">
+                    <h2 data-ar="خدماتنا" data-en="Our Services">خدماتنا</h2>
+                    <div class="icon"><i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a asp-controller="Home" asp-action="Offers" class="card card-2 text-decoration-none">
+                    <h2 data-ar="العروض" data-en="Offers">العروض</h2>
+                    <div class="icon"><i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+            <div class="col-lg-4">
+                <a asp-controller="Home" asp-action="Fleet" class="card card-3 text-decoration-none">
+                    <h2 data-ar="حجز السيارات" data-en="Car Booking">حجز السيارات</h2>
+                    <div class="icon"><i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "لوحة القيادة";
+    // ربط ملف الـ Layout الخاص بالأدمن
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold" style="color: var(--text-main);">نظرة عامة على النظام</h2>
+    <span class="text-muted">تاريخ اليوم: @DateTime.Now.ToString("dd/MM/yyyy")</span>
+</div>
+
+<div class="row g-4">
+    <!-- بطاقة إجمالي السيارات -->
+    <div class="col-xl-3 col-md-6">
+        <div class="premium-card d-flex align-items-center justify-content-between">
+            <div>
+                <p class="text-muted mb-1 fw-bold">إجمالي السيارات</p>
+                <h3 class="fw-bolder mb-0">@ViewBag.TotalCars</h3>
+            </div>
+            <div class="card-icon-box">
+                <i class="fa-solid fa-car"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- بطاقة الحجوزات النشطة -->
+    <div class="col-xl-3 col-md-6">
+        <div class="premium-card d-flex align-items-center justify-content-between">
+            <div>
+                <p class="text-muted mb-1 fw-bold">الحجوزات النشطة</p>
+                <h3 class="fw-bolder mb-0 text-primary">@ViewBag.ActiveBookings</h3>
+            </div>
+            <div class="card-icon-box" style="background: rgba(13, 110, 253, 0.1); color: #0d6efd;">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- بطاقة إجمالي العملاء -->
+    <div class="col-xl-3 col-md-6">
+        <div class="premium-card d-flex align-items-center justify-content-between">
+            <div>
+                <p class="text-muted mb-1 fw-bold">العملاء المسجلين</p>
+                <h3 class="fw-bolder mb-0 text-success">@ViewBag.TotalUsers</h3>
+            </div>
+            <div class="card-icon-box" style="background: rgba(25, 135, 84, 0.1); color: #198754;">
+                <i class="fa-solid fa-users"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- بطاقة إجمالي الأرباح -->
+    <div class="col-xl-3 col-md-6">
+        <div class="premium-card d-flex align-items-center justify-content-between">
+            <div>
+                <p class="text-muted mb-1 fw-bold">الأرباح (ر.س)</p>
+                <h3 class="fw-bolder mb-0 text-warning">@ViewBag.TotalRevenue</h3>
+            </div>
+            <div class="card-icon-box" style="background: rgba(255, 193, 7, 0.1); color: #ffc107;">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="premium-card p-4">
+            <h4 class="fw-bold mb-4">أحدث الحجوزات (قريباً)</h4>
+            <p class="text-muted">سيتم عرض جدول بأحدث الحجوزات الواردة من النظام هنا لمتابعتها ومعالجتها.</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,163 @@
+﻿/* إعدادات المتغيرات للوحة التحكم الاحترافية */
+:root {
+    --primary-bg: #f4f7fe;
+    --sidebar-bg: #1e1e2f;
+    --sidebar-hover: #2b2b40;
+    --accent-color: #b42a91; /* اللون البنفسجي الخاص بالماركة */
+    --accent-gradient: linear-gradient(135deg, #b42a91 0%, #711a5c 100%);
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #8898aa;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--primary-bg);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.admin-sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    color: #fff;
+    transition: all 0.3s ease;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0; /* RTL */
+    z-index: 1000;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+}
+
+    .admin-sidebar.collapsed {
+        width: 80px;
+    }
+
+        .admin-sidebar.collapsed .brand-text,
+        .admin-sidebar.collapsed .nav-link span {
+            display: none;
+        }
+
+.sidebar-brand {
+    height: 80px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 0 20px;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+}
+
+    .sidebar-nav .nav-item {
+        margin-bottom: 10px;
+        padding: 0 15px;
+    }
+
+    .sidebar-nav .nav-link {
+        display: flex;
+        align-items: center;
+        color: #a2a3b7;
+        padding: 12px 15px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 600;
+    }
+
+        .sidebar-nav .nav-link i {
+            font-size: 1.2rem;
+            margin-left: 15px; /* RTL */
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .sidebar-nav .nav-link:hover,
+        .sidebar-nav .nav-link.active {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(180, 42, 145, 0.4);
+            transform: translateX(-5px); /* حركة بسيطة لليسار في RTL */
+        }
+
+/* Main Content Area */
+.main-content {
+    flex: 1;
+    margin-right: 260px; /* RTL */
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+    .main-content.expanded {
+        margin-right: 80px;
+    }
+
+/* Header */
+.admin-header {
+    height: 80px;
+    background-color: var(--card-bg);
+    padding: 0 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 999;
+}
+
+.btn-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.profile-img {
+    border: 2px solid var(--accent-color);
+    padding: 2px;
+}
+
+/* Dashboard Cards (Premium Look) */
+.premium-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: none;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+    .premium-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(180, 42, 145, 0.1);
+    }
+
+    .premium-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0; /* RTL */
+        width: 5px;
+        height: 100%;
+        background: var(--accent-gradient);
+        border-radius: 0 20px 20px 0; /* RTL */
+    }
+
+.card-icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: rgba(180, 42, 145, 0.1);
+    color: var(--accent-color);
+}

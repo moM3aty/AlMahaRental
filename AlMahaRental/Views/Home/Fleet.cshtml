@@ -1,0 +1,133 @@
+﻿@model IEnumerable<AlMahaRental.Models.Car>
+@{
+    ViewData["Title"] = "أسطول المها";
+}
+
+<section class="fleet-section">
+    <div class="container pt-5">
+        <div class="heading text-center d-flex flex-column gap-3 mb-5 justify-content-center align-items-center pt-5">
+            <span data-ar="أسطولنا" data-en="Our Fleet">أسطولنا</span>
+            <h2 class="text-center text-dark" data-ar="استكشف أسطولنا المثالي والواسع" data-en="Explore Our Perfect and Extensive Fleet">
+                استكشف أسطولنا المثالي والواسع
+            </h2>
+        </div>
+
+        <!-- فلاتر البحث (بناءً على التصميم الخاص بك) -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="filter-box">
+                    <label class="mb-2 text-dark" data-ar="سنة الصنع" data-en="Manufacturing Year">سنة الصنع</label>
+                    <select class="form-select" id="yearFilter">
+                        <option value="all" data-ar="الكل" data-en="All">الكل</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="filter-box">
+                    <label class="mb-2 text-dark" data-ar="فئة السيارة" data-en="Car Category">فئة السيارة</label>
+                    <select class="form-select" id="categoryFilter">
+                        <option value="all" data-ar="الكل" data-en="All">الكل</option>
+                        <option value="اقتصادية">اقتصادية</option>
+                        <option value="فخمة">فخمة</option>
+                        <option value="عائلية">عائلية</option>
+                        <option value="دفع رباعي">دفع رباعي</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="filter-box">
+                    <label class="mb-2 text-dark" data-ar="ترتيب السعر" data-en="Sort Price">ترتيب السعر</label>
+                    <select class="form-select" id="priceSort">
+                        <option value="" data-ar="ترتيب بالسعر" data-en="Sort by Price">ترتيب بالسعر</option>
+                        <option value="low" data-ar="من الأرخص للأغلى" data-en="Low to High">من الأرخص للأغلى</option>
+                        <option value="high" data-ar="من الأغلى للأرخص" data-en="High to Low">من الأغلى للأرخص</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- عرض السيارات من الداتا بيز -->
+        <div class="row g-4 mb-5 pb-5 cars-section show">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var car in Model)
+                {
+                    <div class="col-lg-4 col-md-6 car-item" data-category="@car.Category" data-price="@car.DailyPrice" data-year="@car.Year" data-available="@car.IsAvailable.ToString().ToLower()">
+                        <div class="nova-card shadow-sm @(!car.IsAvailable ? "unavailable" : "")">
+                            @if (car.IsAvailable)
+                            {
+                                <span class="badge-offer" data-ar="متاح للحجز" data-en="Available">متاح للحجز</span>
+                            }
+                            else
+                            {
+                                <span class="badge-offer bg-danger" data-ar="غير متاح" data-en="Unavailable">غير متاح</span>
+                            }
+
+                            <div class="nova-img" style="height: 220px; overflow: hidden;">
+                                <img src="@car.ImageUrl" alt="@car.Name" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+
+                            <div class="nova-content">
+                                <span class="nova-badge">@car.Category</span>
+                                <h5 class="nova-title mb-5">@car.Name - @car.Year</h5>
+
+                                <!-- المواصفات -->
+                                <div class="features d-flex justify-content-between align-items-center text-center my-3">
+                                    <div>
+                                        <i class="fa-solid fa-users fs-4 mb-2 text-muted"></i>
+                                        <p class="mt-2 text-purple">@car.Passengers</p>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-door-open fs-4 mb-2 text-muted"></i>
+                                        <p class="mt-2 text-purple">@car.Doors</p>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-suitcase fs-4 mb-2 text-muted"></i>
+                                        <p class="mt-2 text-purple">@car.Bags</p>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-gear fs-4 mb-2 text-muted"></i>
+                                        <p class="mt-2 text-purple">@car.Transmission</p>
+                                    </div>
+                                </div>
+
+                                <div class="pricing-section">
+                                    <div class="daily-price">
+                                        <span class="price-label">الإيجار اليومي</span>
+                                        <div class="price-amount">@car.DailyPrice.ToString("0")</div>
+                                        <span class="tax-note">* يشمل الضريبة</span>
+                                    </div>
+                                    <div class="weekly-price">
+                                        <span class="weekly-label">الإيجار الشهري</span>
+                                        <div class="final-price text-info">@car.MonthlyPrice.ToString("0")</div>
+                                        <span class="tax-note">بدون العداد المفتوح</span>
+                                    </div>
+                                </div>
+
+                                <div class="text-center mt-3">
+                                    @if (car.IsAvailable)
+                                    {
+                                        <a href="/Booking/Reserve/@car.Id" class="btn book-btn w-100" data-ar="احجز الآن" data-en="Book Now">احجز الآن</a>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn book-btn btn-unavailable w-100" disabled data-ar="غير متوفرة" data-en="Unavailable">غير متوفرة</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center py-5">
+                    <h4 class="text-muted">لا توجد سيارات متاحة حالياً.</h4>
+                </div>
+            }
+        </div>
+    </div>
+</section>

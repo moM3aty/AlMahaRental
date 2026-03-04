@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "اتصل بنا";
+}
+
+<section class="contact">
+    <div class="container pt-5">
+        <div class="heading text-center mb-5" data-ar="أرسل لنا رسالة" data-en="Send us a message">
+            <h3 class="section-title text-purple" data-ar="أرسل لنا رسالة" data-en="Send us a message">
+                أرسل لنا رسالة
+            </h3>
+            <p class="text-muted fw-semibold mt-3 mx-auto" style="max-width: 700px;"
+               data-ar="هل تحتاج إلى مساعدة؟ تواصل مع خدمة عملاء المها عبر الهاتف أو البريد الإلكتروني أو بزيارة أحد فروعنا في الرياض، جدة أو الدمام. مواقع المكاتب وساعات العمل"
+               data-en="Need help? Contact Al Maha Customer Service via phone, email, or visit one of our branches in Riyadh, Jeddah, or Dammam. Office locations and working hours.">
+                هل تحتاج إلى مساعدة؟ تواصل مع خدمة عملاء المها عبر الهاتف أو البريد الإلكتروني أو بزيارة أحد فروعنا في الرياض، جدة أو الدمام.
+                <br />مواقع المكاتب وساعات العمل
+            </p>
+        </div>
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+                <div class="contact-form bg-white p-4 rounded-4 shadow-sm">
+                    <form asp-action="ContactUs" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="mb-2 fw-bold" data-ar="الاسم *" data-en="Name *">الاسم *</label>
+                                <input type="text" class="form-control bg-light border-0 py-2" placeholder="ادخل اسمك" data-ar="ادخل اسمك" data-en="Enter your name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 fw-bold" data-ar="البريد الإلكتروني *" data-en="Email *">البريد الإلكتروني *</label>
+                                <input type="email" class="form-control bg-light border-0 py-2" placeholder="example@email.com" data-ar="example@email.com" data-en="example@email.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 fw-bold" data-ar="رقم الجوال *" data-en="Phone Number *">رقم الجوال *</label>
+                                <input type="tel" class="form-control bg-light border-0 py-2" placeholder="05XXXXXXXX" data-ar="05XXXXXXXX" data-en="05XXXXXXXX" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 fw-bold" data-ar="الاستفسار" data-en="Inquiry">الاستفسار</label>
+                                <select class="form-select bg-light border-0 py-2">
+                                    <option data-ar="اختر الموضوع" data-en="Select Topic">اختر الموضوع</option>
+                                    <option data-ar="الشكاوي والاقتراحات" data-en="Complaints & Suggestions">الشكاوي والاقتراحات</option>
+                                    <option data-ar="خدمة العملاء" data-en="Customer Service">خدمة العملاء</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-2 fw-bold" data-ar="المدينة" data-en="City">المدينة</label>
+                                <select class="form-select bg-light border-0 py-2">
+                                    <option data-ar="اختر المدينة" data-en="Select City">اختر المدينة</option>
+                                    <option data-ar="الرياض" data-en="Riyadh">الرياض</option>
+                                    <option data-ar="جدة" data-en="Jeddah">جدة</option>
+                                    <option data-ar="الدمام" data-en="Dammam">الدمام</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="mb-2 fw-bold" data-ar="رسالتك" data-en="Your Message">رسالتك</label>
+                                <textarea class="form-control bg-light border-0 py-2" rows="5" placeholder="اكتب رسالتك هنا..." data-ar="اكتب رسالتك هنا..." data-en="Write your message here..." required></textarea>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn w-100 py-3 fw-bold rounded-pill shadow-sm" style="background: linear-gradient(135deg, #b42a91 0%, #711a5c 100%); color: white;" data-ar="إرسال الرسالة" data-en="Send Message">
+                                    إرسال الرسالة
+                                    <i class="fas fa-paper-plane me-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="contact-card shadow-sm p-4 rounded-4 mb-4 bg-white">
+                    <div class="icon-box mb-3 text-white d-inline-flex justify-content-center align-items-center rounded-circle" style="width: 60px; height: 60px; background: linear-gradient(135deg, #b42a91 0%, #711a5c 100%);">
+                        <i class="fas fa-phone fs-4"></i>
+                    </div>
+                    <h5 class="fw-bold mb-3" data-ar="الدعم عبر الهاتف" data-en="Phone Support">الدعم عبر الهاتف</h5>
+                    <p class="fs-5 mb-1"><strong data-ar="0535089998" data-en="0535089998">0535089998</strong></p>
+                    <p class="text-muted" data-ar="من الأحد إلى الخميس: 8:00 صباحًا - 4:30 مساءً" data-en="Sunday to Thursday: 8:00 AM - 4:30 PM">
+                        من الأحد إلى الخميس: 8:00 صباحًا - 4:30 مساءً
+                    </p>
+                </div>
+
+                <div class="contact-card shadow-sm p-4 rounded-4 bg-white">
+                    <div class="icon-box mb-3 text-white d-inline-flex justify-content-center align-items-center rounded-circle" style="width: 60px; height: 60px; background: linear-gradient(135deg, #b42a91 0%, #711a5c 100%);">
+                        <i class="fas fa-envelope fs-4"></i>
+                    </div>
+                    <h5 class="fw-bold mb-3" data-ar="الدعم عبر البريد الإلكتروني" data-en="Email Support">الدعم عبر البريد الإلكتروني</h5>
+                    <p class="fs-5 mb-1" data-ar="Almaha-car@hotmail.com" data-en="Almaha-car@hotmail.com">Almaha-car@hotmail.com</p>
+                    <p class="text-muted" data-ar="الرد خلال ساعات العمل" data-en="Response during working hours">الرد خلال ساعات العمل</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

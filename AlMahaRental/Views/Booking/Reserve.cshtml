@@ -1,0 +1,186 @@
+﻿@model AlMahaRental.Models.Booking
+@{
+    ViewData["Title"] = "إتمام الحجز";
+}
+
+<section class="services-header" style="min-height: 40vh; background-position: center;">
+    <div class="container pt-5 text-center">
+        <h2 data-ar="إتمام الحجز" data-en="Complete Booking" class="text-white fw-bold mb-3">إتمام الحجز</h2>
+        <div class="fw-semibold text-white">
+            <a href="/" class="text-white text-decoration-none" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+            <span class="mx-2">/</span>
+            <a href="/Home/Fleet" class="text-white text-decoration-none" data-ar="أسطول المها" data-en="Fleet">الأسطول</a>
+            <span class="mx-2">/</span>
+            <span class="text-white" data-ar="حجز سيارة" data-en="Book Car">حجز @Model.Car?.Name</span>
+        </div>
+    </div>
+</section>
+
+<section class="booking-section py-5 bg-light">
+    <div class="container">
+        <div class="row g-5">
+
+            <!-- تفاصيل السيارة المختارة -->
+            <div class="col-lg-4">
+                <div class="nova-card shadow-sm bg-white rounded-4 p-4 h-100">
+                    <h4 class="fw-bold mb-4 text-purple text-center border-bottom pb-3">ملخص السيارة</h4>
+
+                    <img src="@Model.Car?.ImageUrl" alt="@Model.Car?.Name" class="img-fluid rounded-3 mb-4 w-100" style="height: 200px; object-fit: cover;">
+
+                    <h5 class="fw-bold text-center mb-3">@Model.Car?.Name - @Model.Car?.Year</h5>
+                    <div class="text-center mb-4">
+                        <span class="badge bg-purple text-white px-3 py-2 fs-6 rounded-pill" style="background-color: var(--accent-color);">
+                            @Model.Car?.Category
+                        </span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3 border-bottom pb-2">
+                        <span class="text-muted fw-bold"><i class="fa-solid fa-users me-2"></i> الركاب:</span>
+                        <span class="fw-bold">@Model.Car?.Passengers</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3 border-bottom pb-2">
+                        <span class="text-muted fw-bold"><i class="fa-solid fa-suitcase me-2"></i> الحقائب:</span>
+                        <span class="fw-bold">@Model.Car?.Bags</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3 border-bottom pb-2">
+                        <span class="text-muted fw-bold"><i class="fa-solid fa-gear me-2"></i> ناقل الحركة:</span>
+                        <span class="fw-bold">@Model.Car?.Transmission</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3 bg-light p-3 rounded-3 mt-4">
+                        <span class="text-dark fw-bold fs-5">السعر اليومي:</span>
+                        <span class="fw-bold fs-5 text-success" id="dailyPrice" data-price="@Model.Car?.DailyPrice">@Model.Car?.DailyPrice.ToString("0.00") ر.س</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- نموذج الحجز -->
+            <div class="col-lg-8">
+                <div class="bg-white p-5 rounded-4 shadow-sm">
+                    <h3 class="fw-bold mb-4" style="color: var(--accent-color);">
+                        <i class="fa-solid fa-calendar-alt me-2"></i> أدخل تفاصيل الحجز
+                    </h3>
+                    <hr class="mb-4">
+
+                    <form asp-action="Reserve" method="post" id="bookingForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="CarId" />
+
+                        <div class="row g-4">
+                            <!-- مواقع الاستلام والتسليم -->
+                            <div class="col-md-6">
+                                <label asp-for="PickupLocation" class="form-label fw-bold">موقع الاستلام <span class="text-danger">*</span></label>
+                                <select asp-for="PickupLocation" class="form-select form-select-lg bg-light border-0" required>
+                                    <option value="">-- اختر فرع الاستلام --</option>
+                                    <option value="الرياض - الفرع الرئيسي">الرياض - الفرع الرئيسي</option>
+                                    <option value="مطار الملك خالد - الرياض">مطار الملك خالد - الرياض</option>
+                                    <option value="جدة - حي التحلية">جدة - حي التحلية</option>
+                                    <option value="مطار الملك عبدالعزيز - جدة">مطار الملك عبدالعزيز - جدة</option>
+                                    <option value="الدمام - الفرع الرئيسي">الدمام - الفرع الرئيسي</option>
+                                </select>
+                                <span asp-validation-for="PickupLocation" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="ReturnLocation" class="form-label fw-bold">موقع التسليم <span class="text-danger">*</span></label>
+                                <select asp-for="ReturnLocation" class="form-select form-select-lg bg-light border-0" required>
+                                    <option value="">-- اختر فرع التسليم --</option>
+                                    <option value="الرياض - الفرع الرئيسي">الرياض - الفرع الرئيسي</option>
+                                    <option value="مطار الملك خالد - الرياض">مطار الملك خالد - الرياض</option>
+                                    <option value="جدة - حي التحلية">جدة - حي التحلية</option>
+                                    <option value="مطار الملك عبدالعزيز - جدة">مطار الملك عبدالعزيز - جدة</option>
+                                    <option value="الدمام - الفرع الرئيسي">الدمام - الفرع الرئيسي</option>
+                                </select>
+                                <span asp-validation-for="ReturnLocation" class="text-danger"></span>
+                            </div>
+
+                            <!-- التواريخ -->
+                            <div class="col-md-6">
+                                <label asp-for="PickupDate" class="form-label fw-bold">تاريخ الاستلام <span class="text-danger">*</span></label>
+                                <input asp-for="PickupDate" type="date" class="form-control form-control-lg bg-light border-0 date-calc" id="pickupDate" required />
+                                <span asp-validation-for="PickupDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="ReturnDate" class="form-label fw-bold">تاريخ التسليم <span class="text-danger">*</span></label>
+                                <input asp-for="ReturnDate" type="date" class="form-control form-control-lg bg-light border-0 date-calc" id="returnDate" required />
+                                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                            </div>
+
+                            <!-- ملخص السعر والدفع -->
+                            <div class="col-12 mt-5">
+                                <div class="p-4 rounded-3 text-white" style="background: var(--accent-gradient);">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="mb-0">إجمالي الأيام:</h5>
+                                        <h5 class="mb-0 fw-bold" id="totalDays">2 يوم</h5>
+                                    </div>
+                                    <hr class="opacity-50">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h4 class="mb-0 fw-bold">الإجمالي الكلي:</h4>
+                                        <h3 class="mb-0 fw-bold" id="totalPriceCalc">0.00 ر.س</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- زر التأكيد -->
+                            <div class="col-12 text-center mt-5">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <button type="submit" class="btn btn-lg w-100 fw-bold shadow" style="background-color: #2c2c2c; color: white; padding: 15px;">
+                                        <i class="fa-solid fa-check-circle me-2"></i> تأكيد الحجز الآن
+                                    </button>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning border-0 shadow-sm p-4">
+                                        <i class="fa-solid fa-lock fs-3 mb-3 d-block text-warning"></i>
+                                        <h5 class="fw-bold">يجب تسجيل الدخول لإتمام الحجز</h5>
+                                        <p>يرجى تسجيل الدخول لحسابك أو إنشاء حساب جديد لتتمكن من إكمال عملية الحجز بنجاح.</p>
+                                        <a href="/Identity/Account/Login?ReturnUrl=/Booking/Reserve/@Model.CarId" class="btn btn-warning fw-bold px-5 mt-2">تسجيل الدخول</a>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // سكربت لحساب السعر الإجمالي بشكل ديناميكي عند تغيير التواريخ
+        document.addEventListener('DOMContentLoaded', function () {
+            const pickupInput = document.getElementById('pickupDate');
+            const returnInput = document.getElementById('returnDate');
+            const dailyPrice = parseFloat(document.getElementById('dailyPrice').getAttribute('data-price'));
+
+            function calculateTotal() {
+                const start = new Date(pickupInput.value);
+                const end = new Date(returnInput.value);
+
+                if (start && end && start <= end) {
+                    const diffTime = Math.abs(end - start);
+                    let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    if(diffDays === 0) diffDays = 1; // حساب يوم واحد كحد أدنى
+
+                    const total = diffDays * dailyPrice;
+
+                    document.getElementById('totalDays').innerText = diffDays + ' يوم';
+                    document.getElementById('totalPriceCalc').innerText = total.toFixed(2) + ' ر.س';
+                } else {
+                    document.getElementById('totalDays').innerText = '-';
+                    document.getElementById('totalPriceCalc').innerText = '0.00 ر.س';
+                }
+            }
+
+            pickupInput.addEventListener('change', calculateTotal);
+            returnInput.addEventListener('change', calculateTotal);
+
+            // حساب مبدئي عند تحميل الصفحة
+            calculateTotal();
+        });
+    </script>
+}

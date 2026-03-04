@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "من نحن";
+}
+
+<section class="about-section">
+    <div class="container pt-5">
+        <div class="row g-4 align-items-center pt-3">
+            <div class="col-lg-6">
+                <div class="small-circle rounded-3">
+                    <img src="~/images/about-us.jpg" class="img-fluid" alt="عن المها">
+                </div>
+            </div>
+            <div class="col-lg-6 text-dark">
+                <p class="section-subtitle" data-ar="✱ نبذة عن الشركة" data-en="✱ About the Company">
+                    ✱ نبذة عن الشركة
+                </p>
+                <h2 class="section-title" data-ar="شريككم الموثوق في تلبية جميع احتياجات النقل" data-en="Your Trusted Partner for All Transportation Needs">
+                    شريككم الموثوق في تلبية جميع احتياجات النقل
+                </h2>
+                <p class="section-text text-muted" data-ar="تأسست شركة المها لتأجير السيارات في المملكة العربية السعودية لتكون شريككم الموثوق..." data-en="Al Maha Car Rental was established in the Kingdom of Saudi Arabia...">
+                    تأسست شركة المها لتأجير السيارات في المملكة العربية السعودية لتكون شريككم الموثوق في تلبية جميع احتياجات النقل. نلتزم بتقديم حلول تأجير سيارات مرنة ومريحة، تتناسب مع متطلبات الأفراد والشركات على حد سواء.
+                    <br><br>
+                    نمتلك أسطولاً حديثاً ومتنوعاً من السيارات، بدءاً من السيارات الاقتصادية وصولاً إلى الفاخرة، بالإضافة إلى سيارات الدفع الرباعي والمركبات التجارية، وكلها تخضع لصيانة دورية لضمان أعلى مستويات الأمان والجودة.
+                </p>
+                <a asp-controller="Home" asp-action="ContactUs" class="btn about-btn mt-4" data-ar="تواصل معنا" data-en="Contact Us">
+                    تواصل معنا
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="vision-section py-5 mt-5">
+    <div class="container">
+        <ul class="nav nav-pills justify-content-center vision-tabs mb-5" id="visionTab" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#vision" type="button" data-ar="رؤيتنا" data-en="Our Vision">رؤيتنا</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#mission" type="button" data-ar="رسالتنا" data-en="Our Mission">رسالتنا</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#values" type="button" data-ar="قيمنا" data-en="Our Values">قيمنا</button>
+            </li>
+        </ul>
+        <div class="tab-content text-white">
+            <div class="tab-pane fade show active" id="vision">
+                <div class="row g-4 align-items-center justify-content-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <p class="section-subtitle">✱ رؤيتنا</p>
+                        <h2 class="section-title text-white">الريادة في تأجير السيارات بالمملكة</h2>
+                        <p class="section-text">
+                            نطمح إلى أن نكون الشركة الرائدة والمفضلة في مجال تأجير السيارات في المملكة العربية السعودية، وأن نشكل المعيار الذي يُحتذى به في الابتكار والجودة وخدمة العملاء المتميزة.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="d-flex justify-content-center image">
+                            <img src="~/images/our-vision.jpg" class="img-fluid rounded-4" alt="vision">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- باقي التابات يتم إضافتها هنا بنفس النمط -->
+        </div>
+    </div>
+</section>
