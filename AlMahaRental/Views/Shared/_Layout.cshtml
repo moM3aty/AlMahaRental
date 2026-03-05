@@ -31,7 +31,7 @@
                 <div class="header-center">
                     <div class="logo">
                         <a asp-controller="Home" asp-action="Index">
-                            <img src="~/images/logo-1.jpg" class="img-fluid" alt="المها لتأجير السيارات">
+                            <img src="~/images/logo-1.jpg" class="img-fluid" alt="">
                         </a>
                     </div>
                 </div>
@@ -44,24 +44,22 @@
                         </svg>
                         <span data-ar="إدارة الحجوزات" data-en="Booking Management">إدارة الحجوزات</span>
                     </a>
-
                     @if (User.Identity.IsAuthenticated)
                     {
                         <a class="btn-login text-decoration-none" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
-                            <i class="fa-solid fa-user-circle me-1"></i>
+                            <i class="fa-solid fa-user-circle me-1" style="font-size: 20px;"></i>
                             <span data-ar="حسابي" data-en="My Account">حسابي</span>
                         </a>
                     }
                     else
                     {
-                        <a class="btn-login text-decoration-none" href="/Identity/Account/Login">
+                        <a class="btn-login text-decoration-none" href="/Account/Login">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                             </svg>
                             <span data-ar="تسجيل دخول" data-en="Login">تسجيل دخول</span>
                         </a>
                     }
-
                     <button class="btn-lang" id="langToggle">
                         <img src="https://flagcdn.com/w40/us.png" id="langFlag" width="20">
                         <span data-ar="English" data-en="العربية">English</span>
@@ -80,25 +78,86 @@
         </button>
 
         <nav class="sidebar-nav">
+            <a href="/Account/Login" class="nav-item nav-item-orange">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                </svg>
+                <span data-ar="تسجيل دخول" data-en="Login">تسجيل دخول</span>
+            </a>
+
             <a asp-controller="Home" asp-action="Index" class="nav-item">
-                <i class="fa-solid fa-home"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
+                </svg>
                 <span data-ar="الصفحة الرئيسية" data-en="Home">الصفحة الرئيسية</span>
             </a>
+
+            <a href="/#manageReserve" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M0 3.5A.5.5 0 0 1 .5 3H1c.325 0 .617.097.85.268C2.08 3.097 2.372 3 2.697 3H15a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1.5c-.18 0-.356-.021-.518-.06l-1.96.392A.5.5 0 0 1 11 12h-.5a3.5 3.5 0 1 1-7 0H.5a.5.5 0 0 1-.5-.5v-8zm3 9a2.5 2.5 0 0 0 5 0H3z" />
+                </svg>
+                <span data-ar="إحجز السيارة" data-en="Book a Car">إحجز السيارة</span>
+            </a>
+
             <a asp-controller="Home" asp-action="Fleet" class="nav-item">
-                <i class="fa-solid fa-car"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+                </svg>
                 <span data-ar="أسطول المها" data-en="Al Maha Fleet">أسطول المها</span>
             </a>
+
+            <a asp-controller="Home" asp-action="OurLocations" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                </svg>
+                <span data-ar="مواقع الفروع" data-en="Branches Locations">مواقع الفروع</span>
+            </a>
+
             <a asp-controller="Home" asp-action="Services" class="nav-item">
-                <i class="fa-solid fa-gem"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+                    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319z" />
+                </svg>
                 <span data-ar="الخدمات" data-en="Services">الخدمات</span>
             </a>
+
+            <a asp-controller="Home" asp-action="Offers" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z" />
+                    <path d="M5.5 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0-2a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1zM1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13z" />
+                </svg>
+                <span data-ar="العروض" data-en="Offers">العروض</span>
+            </a>
+
+            <a asp-controller="Home" asp-action="Jobs" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
+                    <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                </svg>
+                <span data-ar="وظائف" data-en="Careers">وظائف</span>
+            </a>
+
             <a asp-controller="Home" asp-action="AboutUs" class="nav-item">
-                <i class="fa-solid fa-info-circle"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg>
                 <span data-ar="معلومات عنا" data-en="About Us">معلومات عنا</span>
             </a>
+
             <a asp-controller="Home" asp-action="ContactUs" class="nav-item">
-                <i class="fa-solid fa-envelope"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                </svg>
                 <span data-ar="إتصل بنا" data-en="Contact Us">إتصل بنا</span>
+            </a>
+
+            <a asp-controller="Home" asp-action="FAQ" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                </svg>
+                <span data-ar="الأسئلة الأكثر شيوعاً" data-en="Frequently Asked Questions">الأسئلة الأكثر شيوعاً</span>
             </a>
         </nav>
     </div>
@@ -114,12 +173,28 @@
                     <div class="col-md-2">
                         <div class="footer-title" data-ar="عن الشركة" data-en="About Us">عن الشركة</div>
                         <a asp-controller="Home" asp-action="AboutUs" class="footer-link" data-ar="معلومات عنا" data-en="About Us">معلومات عنا</a>
-                        <a asp-controller="Home" asp-action="ContactUs" class="footer-link" data-ar="إتصل بنا" data-en="Contact Us">إتصل بنا</a>
+                        <a asp-controller="Home" asp-action="OurLocations" class="footer-link" data-ar="مواقع الفروع" data-en="Our Locations">مواقع الفروع</a>
+                        <a asp-controller="Home" asp-action="Jobs" class="footer-link" data-ar="وظائف" data-en="Jobs">وظائف</a>
                     </div>
                     <div class="col-md-2">
                         <div class="footer-title" data-ar="الخدمات" data-en="Services">الخدمات</div>
                         <a asp-controller="Home" asp-action="Services" class="footer-link" data-ar="الخدمات" data-en="Services">الخدمات</a>
                         <a asp-controller="Home" asp-action="Fleet" class="footer-link" data-ar="أسطول المها" data-en="Our Fleet">أسطول المها</a>
+                        <a href="/#manageReserve" class="footer-link" data-ar="التأجير طويل الأجل" data-en="Long-term Rental">التأجير طويل الأجل</a>
+                        <a href="#" class="footer-link" data-ar="مبيعات السيارات" data-en="Car Sales">مبيعات السيارات</a>
+                        <a asp-controller="Home" asp-action="Offers" class="footer-link" data-ar="العروض" data-en="Offers">العروض</a>
+                        <a href="/Account/Register" class="footer-link" data-ar="التسجيل لأول مرة" data-en="Sign Up">التسجيل لأول مرة</a>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-title" data-ar="استأجر" data-en="Rent">استأجر</div>
+                        <a href="/#manageReserve" class="footer-link" data-ar="يومي" data-en="Daily">يومي</a>
+                        <a href="/#manageReserve" class="footer-link" data-ar="اسبوعي" data-en="Weekly">اسبوعي</a>
+                        <a href="/#manageReserve" class="footer-link" data-ar="فليكس (التأجير الشهري)" data-en="Flex (Monthly Rental)">فليكس (التأجير الشهري)</a>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-title" data-ar="الدعم" data-en="Support">الدعم</div>
+                        <a asp-controller="Home" asp-action="ContactUs" class="footer-link" data-ar="اتصل بنا" data-en="Contact Us">اتصل بنا</a>
+                        <a asp-controller="Home" asp-action="FAQ" class="footer-link" data-ar="الأسئلة الأكثر شيوعاً" data-en="FAQ">الأسئلة الأكثر شيوعاً</a>
                     </div>
                     <div class="col-md-3">
                         <div class="footer-title" data-ar="تابعنا على وسائل التواصل الاجتماعي" data-en="Follow Us on Social Media">
@@ -131,7 +206,9 @@
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-x-twitter"></i></a>
                         </div>
-                        <div class="footer-title mt-4" data-ar="حمل تطبيقنا" data-en="Download Our App">حمل تطبيقنا</div>
+                        <div class="footer-title mt-4" data-ar="حمل تطبيقنا" data-en="Download Our App">
+                            حمل تطبيقنا
+                        </div>
                         <div class="store-btn d-flex flex-wrap gap-2">
                             <img src="~/images/applestore.png">
                             <img src="~/images/google.png">
@@ -144,8 +221,8 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row g-4 align-items-center p-3">
-                    <div class="col-lg-6 text-end copyright" data-ar="حقوق الملكية @DateTime.Now.Year. جميع الحقوق محفوظة لشركة المها لتأجير السيارات." data-en="© @DateTime.Now.Year All rights reserved by Al Maha Car Rental.">
-                        حقوق الملكية @DateTime.Now.Year. جميع الحقوق محفوظة لشركة المها لتأجير السيارات.
+                    <div class="col-lg-6 text-end copyright" data-ar="حقوق الملكية 2026. جميع الحقوق محفوظة لشركة المها لتأجير السيارات." data-en="© 2026 All rights reserved by Al Maha Car Rental.">
+                        حقوق الملكية 2026. جميع الحقوق محفوظة لشركة المها لتأجير السيارات.
                     </div>
                     <div class="col-lg-6 justify-content-between payment-logos">
                         <img src="~/images/footer-logos.png">

@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "العروض";
+}
+
+<section class="offers py-5">
+
+    <div class="container pt-5">
+        <h2 class="section-title text-purple text-center">
+            <span data-ar="العروض الخاصة بالمها" data-en="Almaha Special Offers">
+                العروض الخاصة بالمها
+            </span>
+        </h2>
+        <div class="row g-4 mb-5 justify-content-center">
+
+            <div class="col-md-4">
+                <div class="filter-box">
+                    <label data-ar="فئة السيارات" data-en="Car Category">فئة السيارات</label>
+                    <select class="form-select">
+                        <option selected data-ar="الكل" data-en="All">الكل</option>
+                        <option data-ar="اقتصادية" data-en="Economy">اقتصادية</option>
+                        <option data-ar="فاخرة" data-en="Luxury">فاخرة</option>
+                        <option data-ar="عائلية" data-en="Family">عائلية</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="filter-box">
+                    <label data-ar="فرع" data-en="Branch">فرع</label>
+                    <select class="form-select">
+                        <option selected data-ar="حدد الفرع" data-en="Select Branch">حدد الفرع</option>
+                        <option data-ar="الرياض" data-en="Riyadh">الرياض</option>
+                        <option data-ar="جدة" data-en="Jeddah">جدة</option>
+                        <option data-ar="الدمام" data-en="Dammam">الدمام</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="filter-box">
+                    <label data-ar="المدينة" data-en="City">المدينة</label>
+                    <select class="form-select">
+                        <option selected data-ar="اختيار مدينة" data-en="Select City">اختيار مدينة</option>
+                        <option data-ar="الرياض" data-en="Riyadh">الرياض</option>
+                        <option data-ar="جدة" data-en="Jeddah">جدة</option>
+                        <option data-ar="أبها" data-en="Abha">أبها</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="no-offers" data-ar="لا يوجد عروض حالياً" data-en="No offers available at the moment">
+        لا يوجد عروض حالياً
+    </div>
+
+</section>
+
+<section class="cta">
+    <div class="container">
+        <div class="row g-4 justify-content-center ">
+            <div class="col-lg-6">
+                <div class="content d-flex flex-column gap-2 justify-content-center align-items-center">
+                    <h2 data-ar="هل أنت مستعد لرحلة خالية من التوتر؟"
+                        data-en="Are you ready for a stress-free journey?">
+                        هل أنت مستعد لرحلة خالية من التوتر؟
+                    </h2>
+                    <p data-ar="احجز خدمة السائق الفاخرة الخاصة بك اليوم."
+                       data-en="Book your private luxury driver service today.">
+                        احجز خدمة السائق الفاخرة الخاصة بك اليوم.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="button d-flex flex-column gap-2 justify-content-center align-items-center">
+                    <a href="/Booking/Reserve" class="btn book-btn" data-ar="احجز الأن" data-en="Book Now">
+                        احجز الأن
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

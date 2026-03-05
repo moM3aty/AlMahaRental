@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "الأسئلة الشائعة";
+}
+
+<section class="services-header" style="min-height: 40vh; background-position: center; background-image: linear-gradient(rgba(180,42,145,0.8), rgba(0,0,0,0.7)), url('/images/service-bg.jpg');">
+    <div class="container pt-5 text-center">
+        <h2 class="text-white fw-bold mb-3" data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</h2>
+        <div class="fw-semibold text-white">
+            <a asp-controller="Home" asp-action="Index" class="text-white text-decoration-none" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+            <span class="mx-2">/</span>
+            <span class="text-white" data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</span>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section py-5 bg-light">
+    <div class="container py-4">
+        <div class="row g-5 align-items-center">
+
+            <div class="col-lg-6 position-relative d-none d-lg-block text-center">
+                <img src="~/images/car.png" class="img-fluid" style="filter: drop-shadow(0px 20px 20px rgba(0,0,0,0.15));" alt="Car FAQ">
+            </div>
+
+            <div class="col-lg-6">
+                <div class="mb-4">
+                    <p class="text-purple fw-bold mb-2 fs-5" data-ar="✱ الأسئلة الشائعة" data-en="✱ FAQ">✱ مركز المساعدة</p>
+                    <h2 class="fw-bold text-dark lh-base" data-ar="كل ما تحتاج لمعرفته حول خدماتنا" data-en="Everything You Need to Know About Our Services">
+                        كل ما تحتاج لمعرفته حول خدمات تأجير السيارات من المها
+                    </h2>
+                </div>
+
+                <div class="accordion custom-faq shadow-sm rounded-4 overflow-hidden" id="faqAccordion" style="background: white;">
+
+                    <!-- Question 1 -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold py-4 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
+                                <span class="me-auto text-dark" data-ar="ما هي المستندات المطلوبة لاستئجار سيارة؟">ما هي المستندات المطلوبة لاستئجار سيارة؟</span>
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted fw-semibold lh-lg px-4 pb-4 pt-0">
+                                رخصة قيادة سارية المفعول، هوية وطنية أو إقامة صالحة، وبطاقة دفع ائتمانية صالحة باسم المستأجر.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold py-4 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                <span class="me-auto text-dark" data-ar="هل تقبلون العملاء الدوليين أو زوار المملكة؟">هل تقبلون العملاء الدوليين أو زوار المملكة؟</span>
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted fw-semibold lh-lg px-4 pb-4 pt-0">
+                                نعم، بكل تأكيد نرحب بالزوار والعملاء الدوليين. يشترط فقط تقديم جواز السفر ورخصة القيادة الدولية السارية أو رخصة قيادة معتمدة من بلد الزائر.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="accordion-item border-0 border-bottom">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold py-4 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                <span class="me-auto text-dark" data-ar="ما أنواع السيارات التي تقدمونها؟">ما هي أنواع وفئات السيارات المتوفرة لديكم؟</span>
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted fw-semibold lh-lg px-4 pb-4 pt-0">
+                                نوفر في "المها لتأجير السيارات" أسطولاً ضخماً ومتنوعاً يضم سيارات اقتصادية، سيارات سيدان صغيرة وكبيرة، سيارات الدفع الرباعي العائلية (SUV)، بالإضافة إلى السيارات الفارهة. وهذا يتم تحديثه تلقائياً في الأسطول.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold py-4 bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                <span class="me-auto text-dark">هل يوجد حد لعدد الكيلومترات (العداد)؟</span>
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted fw-semibold lh-lg px-4 pb-4 pt-0">
+                                يعتمد ذلك على نوع العقد. نوفر خيارات عقود بعداد يومي محدد (مثلاً 250 كم)، ونوفر أيضاً خيار "العداد المفتوح" بتكلفة إضافية بسيطة لتمنحك حرية التنقل بلا قيود.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

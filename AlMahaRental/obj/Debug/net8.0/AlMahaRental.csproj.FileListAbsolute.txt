@@ -136,3 +136,4 @@ D:\Dev\AlMahaRental\AlMahaRental\obj\Debug\net8.0\refint\AlMahaRental.dll
 D:\Dev\AlMahaRental\AlMahaRental\obj\Debug\net8.0\AlMahaRental.pdb
 D:\Dev\AlMahaRental\AlMahaRental\obj\Debug\net8.0\AlMahaRental.genruntimeconfig.cache
 D:\Dev\AlMahaRental\AlMahaRental\obj\Debug\net8.0\ref\AlMahaRental.dll
+D:\Dev\AlMahaRental\AlMahaRental\obj\Debug\net8.0\AlMahaRental.sourcelink.json

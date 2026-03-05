@@ -1,0 +1,76 @@
+﻿@model IEnumerable<AlMahaRental.Models.ContactMessage>
+@{
+    ViewData["Title"] = "رسائل التواصل";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold" style="color: var(--text-main);">صندوق البريد (رسائل العملاء)</h2>
+    <span class="badge bg-info fs-6 px-3 py-2 rounded-pill text-dark">
+        الرسائل غير المقروءة: @Model.Count(m => !m.IsRead)
+    </span>
+</div>
+
+<div class="row g-4">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var msg in Model)
+        {
+            <div class="col-12">
+                <div class="premium-card p-4 @(msg.IsRead ? "opacity-75" : "border-start border-4 border-primary")">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h5 class="fw-bold text-dark mb-1">
+                                @msg.Name
+                                @if (!msg.IsRead)
+                                {
+                                    <span class="badge bg-primary ms-2" style="font-size: 0.7rem;">جديد</span>
+                                }
+                            </h5>
+                            <div class="text-muted small">
+                                <i class="fa-solid fa-envelope me-1"></i> @msg.Email |
+                                <i class="fa-solid fa-phone mx-1"></i> @msg.PhoneNumber |
+                                <i class="fa-solid fa-location-dot mx-1"></i> @msg.City
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="text-muted small d-block mb-2">@msg.CreatedAt.ToString("yyyy-MM-dd HH:mm")</span>
+                            <span class="badge bg-secondary">الموضوع: @msg.Topic</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-light p-3 rounded-3 mb-3 text-dark" style="line-height: 1.8;">
+                        @msg.MessageBody
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2 mt-2">
+                        @if (!msg.IsRead)
+                        {
+                            <form asp-action="MarkAsRead" method="post">
+                                <input type="hidden" name="id" value="@msg.Id" />
+                                <button type="submit" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold">
+                                    <i class="fa-solid fa-check-double me-1"></i> تحديد كمقروء
+                                </button>
+                            </form>
+                        }
+                        <form asp-action="Delete" method="post" onsubmit="return confirm('هل أنت متأكد من حذف هذه الرسالة؟');">
+                            <input type="hidden" name="id" value="@msg.Id" />
+                            <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold">
+                                <i class="fa-solid fa-trash me-1"></i> حذف
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <div class="premium-card text-center py-5">
+                <i class="fa-regular fa-envelope-open fs-1 text-muted mb-3"></i>
+                <h5 class="text-muted">لا توجد رسائل جديدة في صندوق الوارد.</h5>
+            </div>
+        </div>
+    }
+</div>

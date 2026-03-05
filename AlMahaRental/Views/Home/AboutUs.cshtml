@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "من نحن";
+    ViewData["Title"] = "معلومات عنا";
 }
 
 <section class="about-section">
@@ -7,60 +7,207 @@
         <div class="row g-4 align-items-center pt-3">
             <div class="col-lg-6">
                 <div class="small-circle rounded-3">
-                    <img src="~/images/about-us.jpg" class="img-fluid" alt="عن المها">
+                    <img src="~/images/about-us.jpg" class="img-fluid" alt="">
                 </div>
             </div>
-            <div class="col-lg-6 text-dark">
+            <div class="col-lg-6 text-white">
                 <p class="section-subtitle" data-ar="✱ نبذة عن الشركة" data-en="✱ About the Company">
                     ✱ نبذة عن الشركة
                 </p>
-                <h2 class="section-title" data-ar="شريككم الموثوق في تلبية جميع احتياجات النقل" data-en="Your Trusted Partner for All Transportation Needs">
+
+                <h2 class="section-title" data-ar="شريككم الموثوق في تلبية جميع احتياجات النقل"
+                    data-en="Your Trusted Partner for All Transportation Needs">
                     شريككم الموثوق في تلبية جميع احتياجات النقل
                 </h2>
-                <p class="section-text text-muted" data-ar="تأسست شركة المها لتأجير السيارات في المملكة العربية السعودية لتكون شريككم الموثوق..." data-en="Al Maha Car Rental was established in the Kingdom of Saudi Arabia...">
-                    تأسست شركة المها لتأجير السيارات في المملكة العربية السعودية لتكون شريككم الموثوق في تلبية جميع احتياجات النقل. نلتزم بتقديم حلول تأجير سيارات مرنة ومريحة، تتناسب مع متطلبات الأفراد والشركات على حد سواء.
+
+                <p class="section-text text-muted"
+                   data-ar="تأسست شركة المها لتأجير السيارات في المملكة العربية السعودية لتكون شريككم الموثوق في تلبية جميع احتياجات النقل. نلتزم بتقديم حلول تأجير سيارات مرنة ومريحة، تتناسب مع متطلبات الأفراد والشركات على حد سواء.
+نمتلك أسطولاً حديثاً ومتنوعاً من السيارات، بدءاً من السيارات الاقتصادية وصولاً إلى الفاخرة، بالإضافة إلى سيارات الدفع الرباعي والمركبات التجارية، وكلها تخضع لصيانة دورية لضمان أعلى مستويات الأمان والجودة.
+نفخر بفريق عملنا المحترف والمتحمس لتقديم خدمة عملاء استثنائية، ونسعى دائماً لتجاوز توقعاتكم من خلال توفير تجربة تأجير سلسة ومريحة من الحجز وحتى تسليم السيارة."
+                   data-en="Al Maha Car Rental was established in the Kingdom of Saudi Arabia to be your trusted partner in meeting all transportation needs. We are committed to providing flexible and convenient car rental solutions tailored to both individuals and businesses.
+
+We own a modern and diverse fleet of vehicles, ranging from economy to luxury cars, as well as SUVs and commercial vehicles. All vehicles undergo regular maintenance to ensure the highest levels of safety and quality.
+
+We take pride in our professional and dedicated team committed to delivering exceptional customer service. We always strive to exceed your expectations by providing a smooth and comfortable rental experience from booking to vehicle delivery.">
+
+                    تأسست شركة المها لتأجير السيارات في المملكة العربية السعودية لتكون
+                    شريككم الموثوق في تلبية جميع احتياجات النقل. نلتزم بتقديم حلول تأجير
+                    سيارات مرنة ومريحة، تتناسب مع متطلبات الأفراد والشركات على حد سواء.
                     <br><br>
-                    نمتلك أسطولاً حديثاً ومتنوعاً من السيارات، بدءاً من السيارات الاقتصادية وصولاً إلى الفاخرة، بالإضافة إلى سيارات الدفع الرباعي والمركبات التجارية، وكلها تخضع لصيانة دورية لضمان أعلى مستويات الأمان والجودة.
+                    نمتلك أسطولاً حديثاً ومتنوعاً من السيارات، بدءاً من السيارات الاقتصادية
+                    وصولاً إلى الفاخرة، بالإضافة إلى سيارات الدفع الرباعي والمركبات التجارية،
+                    وكلها تخضع لصيانة دورية لضمان أعلى مستويات الأمان والجودة.
+                    <br><br>
+                    نفخر بفريق عملنا المحترف والمتحمس لتقديم خدمة عملاء استثنائية،
+                    ونسعى دائماً لتجاوز توقعاتكم من خلال توفير تجربة تأجير سلسة ومريحة
+                    من الحجز وحتى تسليم السيارة.
                 </p>
-                <a asp-controller="Home" asp-action="ContactUs" class="btn about-btn mt-4" data-ar="تواصل معنا" data-en="Contact Us">
+
+                <a href="/Home/ContactUs" class="btn about-btn mt-4" data-ar="تواصل معنا" data-en="Contact Us">
                     تواصل معنا
                 </a>
+
             </div>
+
         </div>
     </div>
 </section>
-
-<section class="vision-section py-5 mt-5">
+<section class="vision-section py-5">
     <div class="container">
         <ul class="nav nav-pills justify-content-center vision-tabs mb-5" id="visionTab" role="tablist">
+
             <li class="nav-item">
-                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#vision" type="button" data-ar="رؤيتنا" data-en="Our Vision">رؤيتنا</button>
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#vision" type="button"
+                        data-ar="رؤيتنا" data-en="Our Vision">
+                    رؤيتنا
+                </button>
             </li>
+
             <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#mission" type="button" data-ar="رسالتنا" data-en="Our Mission">رسالتنا</button>
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#mission" type="button"
+                        data-ar="رسالتنا" data-en="Our Mission">
+                    رسالتنا
+                </button>
             </li>
+
             <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#values" type="button" data-ar="قيمنا" data-en="Our Values">قيمنا</button>
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#values" type="button"
+                        data-ar="قيمنا" data-en="Our Values">
+                    قيمنا
+                </button>
             </li>
+
         </ul>
-        <div class="tab-content text-white">
+        <div class="tab-content">
+
             <div class="tab-pane fade show active" id="vision">
                 <div class="row g-4 align-items-center justify-content-center">
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <p class="section-subtitle">✱ رؤيتنا</p>
-                        <h2 class="section-title text-white">الريادة في تأجير السيارات بالمملكة</h2>
-                        <p class="section-text">
-                            نطمح إلى أن نكون الشركة الرائدة والمفضلة في مجال تأجير السيارات في المملكة العربية السعودية، وأن نشكل المعيار الذي يُحتذى به في الابتكار والجودة وخدمة العملاء المتميزة.
+
+                    <div class="col-lg-6 text-white mb-4 mb-lg-0">
+
+                        <p class="section-subtitle" data-ar="✱ رؤيتنا" data-en="✱ Our Vision">
+                            ✱ رؤيتنا
                         </p>
+
+                        <h2 class="section-title" data-ar="الريادة في تأجير السيارات بالمملكة"
+                            data-en="Leadership in Car Rental Across the Kingdom">
+                            الريادة في تأجير السيارات بالمملكة
+                        </h2>
+
+                        <p class="section-text"
+                           data-ar="نطمح إلى أن نكون الشركة الرائدة والمفضلة في مجال تأجير السيارات في المملكة العربية السعودية، وأن نشكل المعيار الذي يُحتذى به في الابتكار والجودة وخدمة العملاء المتميزة. نسعى إلى تقديم تجربة تأجير متكاملة تتجاوز توقعات عملائنا من خلال أسطول حديث ومتنوع يلبي مختلف الاحتياجات، سواء للأفراد أو الشركات. ونلتزم بتطبيق أعلى معايير السلامة والكفاءة التشغيلية، مع الاستثمار المستمر في التقنيات الحديثة التي تعزز سهولة الحجز وسرعة الخدمة. كما نؤمن بأن التميز الحقيقي يكمن في بناء علاقات طويلة الأمد مع عملائنا تقوم على الثقة والشفافية والاحترافية، مما يعزز مكانتنا كشريك موثوق في كل رحلة وعلى كل طريق."
+                           data-en="We aspire to become the leading and most preferred car rental company in the Kingdom of Saudi Arabia, setting the benchmark in innovation, quality, and outstanding customer service. We aim to deliver a comprehensive rental experience that exceeds our customers' expectations through a modern and diverse fleet tailored to meet the needs of both individuals and businesses. We are committed to applying the highest standards of safety and operational efficiency, while continuously investing in modern technologies that enhance booking convenience and service speed. We believe that true excellence lies in building long-term relationships with our customers based on trust, transparency, and professionalism, strengthening our position as a reliable partner on every journey and every road.">
+
+                            نطمح إلى أن نكون الشركة الرائدة والمفضلة في مجال تأجير السيارات
+                            في المملكة العربية السعودية، وأن نشكل المعيار الذي يُحتذى به في الابتكار والجودة
+                            وخدمة العملاء المتميزة. نسعى إلى تقديم تجربة تأجير متكاملة تتجاوز توقعات عملائنا من
+                            خلال أسطول حديث ومتنوع يلبي مختلف الاحتياجات، سواء للأفراد أو الشركات. ونلتزم بتطبيق
+                            أعلى معايير السلامة والكفاءة التشغيلية، مع الاستثمار المستمر في التقنيات الحديثة
+                            التي تعزز سهولة الحجز وسرعة الخدمة. كما نؤمن بأن التميز الحقيقي يكمن في بناء علاقات
+                            طويلة الأمد مع عملائنا تقوم على الثقة والشفافية والاحترافية، مما يعزز مكانتنا كشريك
+                            موثوق في كل رحلة وعلى كل طريق.
+                        </p>
+
                     </div>
+
                     <div class="col-lg-6">
                         <div class="d-flex justify-content-center image">
                             <img src="~/images/our-vision.jpg" class="img-fluid rounded-4" alt="vision">
                         </div>
                     </div>
+
                 </div>
             </div>
-            <!-- باقي التابات يتم إضافتها هنا بنفس النمط -->
+            <div class="tab-pane fade" id="mission">
+                <div class="row g-4 align-items-center">
+
+                    <div class="col-lg-6 text-white mb-4 mb-lg-0">
+
+                        <p class="section-subtitle" data-ar="✱ رسالتنا" data-en="✱ Our Mission">
+                            ✱ رسالتنا
+                        </p>
+
+                        <h2 class="section-title" data-ar="تقديم حلول تأجير متكاملة وموثوقة"
+                            data-en="Providing Integrated and Reliable Rental Solutions">
+                            تقديم حلول تأجير متكاملة وموثوقة
+                        </h2>
+
+                        <p class="section-text"
+                           data-ar="نلتزم بتوفير حلول تأجير سيارات متكاملة وموثوقة تلبي تطلعات عملائنا وتتجاوز توقعاتهم في كل مرحلة من مراحل الخدمة. ونسعى إلى تقديم أسطول متنوع وحديث يضم أحدث الطرازات التي تناسب مختلف الاحتياجات، سواء للاستخدام اليومي أو الرحلات العائلية أو متطلبات الأعمال. كما نحرص على تقديم خدمة عملاء استثنائية تقوم على السرعة والاحترافية والاهتمام بأدق التفاصيل، لضمان تجربة تأجير سلسة ومريحة. ونوفر خدماتنا بأسعار تنافسية مدروسة تعكس قيمة حقيقية مقابل ما نقدمه من جودة، مع التزامنا الكامل بأعلى معايير السلامة والصيانة الدورية، وتعزيز دورنا في المسؤولية المجتمعية من خلال ممارسات مستدامة تسهم في خدمة المجتمع ودعم التنمية."
+                           data-en="We are committed to providing integrated and reliable car rental solutions that meet and exceed our customers' expectations at every stage of the service. We strive to offer a diverse and modern fleet featuring the latest models to suit various needs, whether for daily use, family trips, or business requirements. We are dedicated to delivering exceptional customer service built on speed, professionalism, and attention to detail, ensuring a smooth and comfortable rental experience. Our services are offered at competitive and well-considered prices that reflect true value for quality, while fully adhering to the highest standards of safety and regular maintenance. We also strengthen our role in social responsibility through sustainable practices that serve the community and support development.">
+
+                            نلتزم بتوفير حلول تأجير سيارات متكاملة وموثوقة تلبي تطلعات عملائنا وتتجاوز توقعاتهم
+                            في كل مرحلة من مراحل الخدمة. ونسعى إلى تقديم أسطول متنوع وحديث يضم أحدث الطرازات
+                            التي تناسب مختلف الاحتياجات، سواء للاستخدام اليومي أو الرحلات العائلية أو متطلبات
+                            الأعمال. كما نحرص على تقديم خدمة عملاء استثنائية تقوم على السرعة والاحترافية
+                            والاهتمام بأدق التفاصيل، لضمان تجربة تأجير سلسة ومريحة. ونوفر خدماتنا بأسعار تنافسية
+                            مدروسة تعكس قيمة حقيقية مقابل ما نقدمه من جودة، مع التزامنا الكامل بأعلى معايير
+                            السلامة والصيانة الدورية، وتعزيز دورنا في المسؤولية المجتمعية من خلال ممارسات
+                            مستدامة تسهم في خدمة المجتمع ودعم التنمية.
+                        </p>
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="d-flex justify-content-center image">
+                            <img src="~/images/our-mission.jpg" class="img-fluid rounded-4" alt="mission">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="values">
+                <div class="row g-4 align-items-center">
+
+                    <div class="col-lg-6 text-white mb-4 mb-lg-0">
+
+                        <p class="section-subtitle" data-ar="✱ قيمنا" data-en="✱ Our Values">
+                            ✱ قيمنا
+                        </p>
+
+                        <h2 class="section-title mb-5" data-ar="المبادئ التي نؤمن بها"
+                            data-en="The Principles We Believe In">
+                            المبادئ التي نؤمن بها
+                        </h2>
+
+                        <ul class="values-list">
+
+                            <li data-ar="التميز في الخدمة" data-en="Excellence in Service">
+                                التميز في الخدمة
+                            </li>
+
+                            <li data-ar="الموثوقية والشفافية" data-en="Reliability and Transparency">
+                                الموثوقية والشفافية
+                            </li>
+
+                            <li data-ar="العميل أولاً" data-en="Customer First">
+                                العميل أولاً
+                            </li>
+
+                            <li data-ar="الابتكار والتطوير" data-en="Innovation and Development">
+                                الابتكار والتطوير
+                            </li>
+
+                            <li data-ar="الاحترافية والمسؤولية" data-en="Professionalism and Responsibility">
+                                الاحترافية والمسؤولية
+                            </li>
+
+                            <li data-ar="روح الفريق" data-en="Team Spirit">
+                                روح الفريق
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="d-flex justify-content-center image">
+                            <img src="~/images/our-value.jpg" class="img-fluid rounded-4" alt="values">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </section>
