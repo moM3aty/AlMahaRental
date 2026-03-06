@@ -21,8 +21,10 @@ namespace AlMahaRental.Controllers
             _env = env;
         }
 
-        public IActionResult Index()
+        // تم التعديل لإرسال الفروع
+        public async Task<IActionResult> Index()
         {
+            ViewBag.Locations = await _context.BranchLocations.ToListAsync();
             return View();
         }
 

@@ -5,8 +5,10 @@
 @using AlMahaRental.Data
 @inject ApplicationDbContext _context
 @{
-    // جلب 6 سيارات متاحة لعرضها في سلايدر العروض بشكل ديناميكي
+    // جلب البيانات ديناميكياً للرئيسية
     var topCars = _context.Cars.Where(c => c.IsAvailable).Take(6).ToList();
+    var allCars = _context.Cars.Where(c => c.IsAvailable).ToList();
+    var branchLocations = _context.BranchLocations.ToList();
 }
 
 <!-- 1. Hero Header Slider -->
@@ -96,7 +98,9 @@
                                 فليكس ( للتأجير الشهري )
                             </button>
                         </div>
-                        <form class="booking-form" asp-controller="Booking" asp-action="Search">
+
+                        <!-- الفورم الديناميكي مع الاستايل الأصلي 100% -->
+                        <form id="homeBookingForm" class="booking-form">
                             <div class="row g-4 daily-reserve">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -110,51 +114,35 @@
                                             <div class="mega-location-dropdown">
                                                 <div class="mega-container">
                                                     <div class="mega-categories">
-                                                        <div class="mega-category active" data-type="airports"
-                                                             data-ar="المطارات" data-en="Airports">
-                                                            المطارات
-                                                        </div>
-                                                        <div class="mega-category" data-type="branches"
-                                                             data-ar="جميع الفروع" data-en="All Branches">
-                                                            جميع الفروع
+                                                        <div class="mega-category active" data-type="branches"
+                                                             data-ar="فروعنا المتاحة" data-en="Our Branches">
+                                                            فروعنا المتاحة
                                                         </div>
                                                     </div>
                                                     <div class="mega-branches">
-                                                        <div class="mega-branch-item" data-name="مطار أبها"
-                                                             data-hours="24 ساعة"
-                                                             data-location="مطار أبها - صالة الوصول"
-                                                             data-ar="مطار أبها" data-en="Abha Airport">
-                                                            مطار أبها
-                                                        </div>
-                                                        <div class="mega-branch-item" data-name="مطار الأحساء"
-                                                             data-hours="6 ص - 12 م"
-                                                             data-location="مطار الأحساء - البوابة الرئيسية"
-                                                             data-ar="مطار الأحساء" data-en="Al Ahsa Airport">
-                                                            مطار الأحساء
-                                                        </div>
-                                                        <div class="mega-branch-item" data-name="الفرع الرئيسي"
-                                                             data-hours="8 ص - 11 م" data-location="شارع الملك فهد"
-                                                             data-ar="الفرع الرئيسي" data-en="Main Branch">
-                                                            الفرع الرئيسي
-                                                        </div>
+                                                        <!-- جلب الفروع من قاعدة البيانات للاستايل الأصلي -->
+                                                        @if (branchLocations != null)
+                                                        {
+                                                            foreach (var loc in branchLocations)
+                                                            {
+                                                                <div class="mega-branch-item" data-name="@loc.Name"
+                                                                     data-hours="متاح حسب الفرع"
+                                                                     data-location="@loc.Name"
+                                                                     data-ar="@loc.Name" data-en="@loc.Name">
+                                                                    @loc.Name
+                                                                </div>
+                                                            }
+                                                        }
                                                     </div>
                                                     <div class="mega-info">
-                                                        <h6 data-ar="توقيت الفرع" data-en="Branch Hours">
-                                                            توقيت
-                                                            الفرع
-                                                        </h6>
+                                                        <h6 data-ar="توقيت الفرع" data-en="Branch Hours">توقيت الفرع</h6>
                                                         <p id="branchHours" data-ar="اختر فرع لعرض التفاصيل"
                                                            data-en="Select a branch to view details">
                                                             اختر فرع لعرض التفاصيل
                                                         </p>
 
-                                                        <h6 data-ar="موقع الفرع" data-en="Branch Location">
-                                                            موقع
-                                                            الفرع
-                                                        </h6>
-                                                        <p id="branchLocation" data-ar="---" data-en="---">
-                                                            ---
-                                                        </p>
+                                                        <h6 data-ar="موقع الفرع" data-en="Branch Location">موقع الفرع</h6>
+                                                        <p id="branchLocation" data-ar="---" data-en="---">---</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,10 +152,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group drop-off-group">
-                                        <label data-ar="موقع التسليم" data-en="Drop-off Location">
-                                            موقع
-                                            التسليم
-                                        </label>
+                                        <label data-ar="موقع التسليم" data-en="Drop-off Location">موقع التسليم</label>
                                         <div class="input-wrapper location-wrapper">
                                             <i class="fas fa-map-marker-alt"></i>
                                             <input type="text" class="form-control location-input" name="DropoffLocation"
@@ -177,50 +162,31 @@
                                             <div class="mega-location-dropdown">
                                                 <div class="mega-container">
                                                     <div class="mega-categories">
-                                                        <div class="mega-category active" data-type="airports"
-                                                             data-ar="المطارات" data-en="Airports">
-                                                            المطارات
-                                                        </div>
-                                                        <div class="mega-category" data-type="branches"
-                                                             data-ar="جميع الفروع" data-en="All Branches">
-                                                            جميع الفروع
+                                                        <div class="mega-category active" data-type="branches"
+                                                             data-ar="فروعنا المتاحة" data-en="Our Branches">
+                                                            فروعنا المتاحة
                                                         </div>
                                                     </div>
                                                     <div class="mega-branches">
-                                                        <div class="mega-branch-item" data-name="مطار أبها"
-                                                             data-hours="24 ساعة"
-                                                             data-location="مطار أبها - صالة الوصول"
-                                                             data-ar="مطار أبها" data-en="Abha Airport">
-                                                            مطار أبها
-                                                        </div>
-                                                        <div class="mega-branch-item" data-name="مطار الأحساء"
-                                                             data-hours="6 ص - 12 م"
-                                                             data-location="مطار الأحساء - البوابة الرئيسية"
-                                                             data-ar="مطار الأحساء" data-en="Al Ahsa Airport">
-                                                            مطار الأحساء
-                                                        </div>
-                                                        <div class="mega-branch-item" data-name="الفرع الرئيسي"
-                                                             data-hours="8 ص - 11 م" data-location="شارع الملك فهد"
-                                                             data-ar="الفرع الرئيسي" data-en="Main Branch">
-                                                            الفرع الرئيسي
-                                                        </div>
+                                                        <!-- جلب الفروع من قاعدة البيانات للاستايل الأصلي -->
+                                                        @if (branchLocations != null)
+                                                        {
+                                                            foreach (var loc in branchLocations)
+                                                            {
+                                                                <div class="mega-branch-item" data-name="@loc.Name"
+                                                                     data-hours="متاح حسب الفرع"
+                                                                     data-location="@loc.Name"
+                                                                     data-ar="@loc.Name" data-en="@loc.Name">
+                                                                    @loc.Name
+                                                                </div>
+                                                            }
+                                                        }
                                                     </div>
                                                     <div class="mega-info">
-                                                        <h6 data-ar="توقيت الفرع" data-en="Branch Hours">
-                                                            توقيت
-                                                            الفرع
-                                                        </h6>
+                                                        <h6 data-ar="توقيت الفرع" data-en="Branch Hours">توقيت الفرع</h6>
                                                         <p id="branchHours" data-ar="اختر فرع لعرض التفاصيل"
                                                            data-en="Select a branch to view details">
                                                             اختر فرع لعرض التفاصيل
-                                                        </p>
-
-                                                        <h6 data-ar="موقع الفرع" data-en="Branch Location">
-                                                            موقع
-                                                            الفرع
-                                                        </h6>
-                                                        <p id="branchLocation" data-ar="---" data-en="---">
-                                                            ---
                                                         </p>
                                                     </div>
                                                 </div>
@@ -231,10 +197,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label data-ar="تاريخ الاستلام" data-en="Pickup Date">
-                                            تاريخ
-                                            الاستلام
-                                        </label>
+                                        <label data-ar="تاريخ الاستلام" data-en="Pickup Date">تاريخ الاستلام</label>
                                         <div class="input-wrapper">
                                             <i class="fas fa-calendar"></i>
                                             <input type="text" class="form-control date-picker" id="pickup-date" name="PickupDate"
@@ -257,10 +220,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label data-ar="تاريخ التسليم" data-en="Return Date">
-                                            تاريخ
-                                            التسليم
-                                        </label>
+                                        <label data-ar="تاريخ التسليم" data-en="Return Date">تاريخ التسليم</label>
                                         <div class="input-wrapper">
                                             <i class="fas fa-calendar"></i>
                                             <input type="text" class="form-control date-picker" id="return-date" name="ReturnDate"
@@ -281,8 +241,28 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group month-reserve" style="display: none;">
+                                <!-- حقل اختيار السيارة بالستايل الأصلي -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label data-ar="اختر السيارة (اختياري)" data-en="Select Car (Optional)">اختر السيارة (اختياري)</label>
+                                        <div class="input-wrapper">
+                                            <i class="fas fa-car"></i>
+                                            <select id="homeSelectedCar" class="form-control" style="appearance: none; -webkit-appearance: none; cursor: pointer;">
+                                                <option value="" selected data-ar="-- تصفح جميع السيارات (الأسطول) --" data-en="-- Browse All Cars (Fleet) --">-- تصفح جميع السيارات (الأسطول) --</option>
+                                                @if (allCars != null)
+                                                {
+                                                    foreach (var car in allCars)
+                                                    {
+                                                        <option value="@car.Id">@car.Name - @car.Year (@car.DailyPrice.ToString("0") ر.س/يوم)</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 month-reserve" style="display: none;">
+                                    <div class="form-group">
                                         <label data-ar="المده" data-en="Duration">المده</label>
                                         <div class="input-wrapper">
                                             <i class="fas fa-clock"></i>
@@ -415,6 +395,7 @@
                     </div>
                 </a>
             </div>
+
             <!-- إدارة الحجز -->
             <div class="row g-4 mt-5 align-items-center" id="manageReserve">
                 <div class="col-lg-8">
@@ -441,6 +422,15 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="reserve-form">
+
+                        <!-- رسائل الخطأ من كنترولر الحجز -->
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="alert alert-danger fw-bold border-0 shadow-sm mb-3">
+                                <i class="fa-solid fa-circle-exclamation me-2"></i> @TempData["ErrorMessage"]
+                            </div>
+                        }
+
                         <form asp-controller="Booking" asp-action="Manage" method="get">
                             <h2 class="mb-4 text-white">
                                 <i class="fa-solid fa-calendar-check mx-2"></i>
@@ -812,3 +802,38 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeForm = document.getElementById('homeBookingForm');
+            if (homeForm) {
+                homeForm.addEventListener('submit', function (e) {
+                    e.preventDefault(); // إيقاف إرسال الفورم الافتراضي
+
+                    // التقاط القيم التي أدخلها العميل
+                    const pickupLoc = document.getElementById('pickupLocation').value;
+                    const dropoffLoc = document.getElementById('dropoffLocation').value;
+                    const pickupDate = document.getElementById('pickup-date').value;
+                    const returnDate = document.getElementById('return-date').value;
+                    const selectedCarId = document.getElementById('homeSelectedCar').value;
+
+                    // حفظ القيم في ذاكرة المتصفح (Local Storage) لكي نقرأها في الصفحة التالية
+                    if (pickupLoc) localStorage.setItem('almaha_pickupLoc', pickupLoc);
+                    if (dropoffLoc) localStorage.setItem('almaha_dropoffLoc', dropoffLoc);
+                    if (pickupDate) localStorage.setItem('almaha_pickupDate', pickupDate);
+                    if (returnDate) localStorage.setItem('almaha_returnDate', returnDate);
+
+                    // الذكاء هنا: إذا العميل اختار سيارة محددة من القائمة المنسدلة
+                    if (selectedCarId) {
+                        window.location.href = '/Booking/Reserve/' + selectedCarId;
+                    }
+                    // وإذا تركها على "تصفح جميع السيارات"
+                    else {
+                        window.location.href = '/Home/Fleet';
+                    }
+                });
+            }
+        });
+    </script>
+}
