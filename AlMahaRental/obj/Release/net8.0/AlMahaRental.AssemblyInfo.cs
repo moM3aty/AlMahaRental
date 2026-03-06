@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AlMahaRental")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a4129c284cac1b25a6f3c87e4fd1d7ed7542794")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52485953928e227fd969589c4dce6a52e5b5cbf4")]
 [assembly: System.Reflection.AssemblyProductAttribute("AlMahaRental")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AlMahaRental")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
