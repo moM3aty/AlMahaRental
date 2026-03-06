@@ -1,73 +1,111 @@
 ﻿@{
     ViewData["Title"] = "لوحة القيادة";
-    // ربط ملف الـ Layout الخاص بالأدمن
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold" style="color: var(--text-main);">نظرة عامة على النظام</h2>
-    <span class="text-muted">تاريخ اليوم: @DateTime.Now.ToString("dd/MM/yyyy")</span>
+<div class="d-flex justify-content-between align-items-end mb-5">
+    <div>
+        <h2 class="page-title fs-3 mb-2">مرحباً بك في لوحة تحكم المها 👋</h2>
+        <p class="text-muted fw-bold mb-0">نظرة عامة على أداء النظام وإحصائيات اليوم.</p>
+    </div>
+    <div class="bg-white px-4 py-2 rounded-pill shadow-sm border fw-bold text-muted">
+        <i class="fa-regular fa-calendar me-2" style="color: var(--primary-color);"></i>
+        @DateTime.Now.ToString("dddd, dd MMMM yyyy")
+    </div>
 </div>
 
-<div class="row g-4">
-    <!-- بطاقة إجمالي السيارات -->
+<!-- الإحصائيات العلوية -->
+<div class="row g-4 mb-5">
     <div class="col-xl-3 col-md-6">
-        <div class="premium-card d-flex align-items-center justify-content-between">
-            <div>
-                <p class="text-muted mb-1 fw-bold">إجمالي السيارات</p>
-                <h3 class="fw-bolder mb-0">@ViewBag.TotalCars</h3>
+        <div class="premium-card stat-card">
+            <div class="stat-info">
+                <p>إجمالي السيارات</p>
+                <h3>@ViewBag.TotalCars</h3>
             </div>
-            <div class="card-icon-box">
+            <div class="stat-icon icon-purple">
                 <i class="fa-solid fa-car"></i>
             </div>
         </div>
     </div>
 
-    <!-- بطاقة الحجوزات النشطة -->
     <div class="col-xl-3 col-md-6">
-        <div class="premium-card d-flex align-items-center justify-content-between">
-            <div>
-                <p class="text-muted mb-1 fw-bold">الحجوزات النشطة</p>
-                <h3 class="fw-bolder mb-0 text-primary">@ViewBag.ActiveBookings</h3>
+        <div class="premium-card stat-card">
+            <div class="stat-info">
+                <p>الحجوزات النشطة</p>
+                <h3>@ViewBag.ActiveBookings</h3>
             </div>
-            <div class="card-icon-box" style="background: rgba(13, 110, 253, 0.1); color: #0d6efd;">
+            <div class="stat-icon icon-blue">
                 <i class="fa-solid fa-calendar-check"></i>
             </div>
         </div>
     </div>
 
-    <!-- بطاقة إجمالي العملاء -->
     <div class="col-xl-3 col-md-6">
-        <div class="premium-card d-flex align-items-center justify-content-between">
-            <div>
-                <p class="text-muted mb-1 fw-bold">العملاء المسجلين</p>
-                <h3 class="fw-bolder mb-0 text-success">@ViewBag.TotalUsers</h3>
+        <div class="premium-card stat-card">
+            <div class="stat-info">
+                <p>العملاء المسجلين</p>
+                <h3>@ViewBag.TotalUsers</h3>
             </div>
-            <div class="card-icon-box" style="background: rgba(25, 135, 84, 0.1); color: #198754;">
+            <div class="stat-icon icon-green">
                 <i class="fa-solid fa-users"></i>
             </div>
         </div>
     </div>
 
-    <!-- بطاقة إجمالي الأرباح -->
     <div class="col-xl-3 col-md-6">
-        <div class="premium-card d-flex align-items-center justify-content-between">
-            <div>
-                <p class="text-muted mb-1 fw-bold">الأرباح (ر.س)</p>
-                <h3 class="fw-bolder mb-0 text-warning">@ViewBag.TotalRevenue</h3>
+        <div class="premium-card stat-card">
+            <div class="stat-info">
+                <p>الأرباح الإجمالية</p>
+                <h3>@ViewBag.TotalRevenue <small class="fs-6 text-muted">ر.س</small></h3>
             </div>
-            <div class="card-icon-box" style="background: rgba(255, 193, 7, 0.1); color: #ffc107;">
+            <div class="stat-icon icon-orange">
                 <i class="fa-solid fa-wallet"></i>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row mt-5">
-    <div class="col-12">
-        <div class="premium-card p-4">
-            <h4 class="fw-bold mb-4">أحدث الحجوزات (قريباً)</h4>
-            <p class="text-muted">سيتم عرض جدول بأحدث الحجوزات الواردة من النظام هنا لمتابعتها ومعالجتها.</p>
+<!-- قسم إجراءات سريعة ومعلومات إضافية -->
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="premium-card h-100">
+            <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
+                <h4 class="fw-bold m-0"><i class="fa-solid fa-bolt me-2 text-warning"></i> إجراءات سريعة</h4>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <a href="/Admin/Cars/Create" class="btn w-100 py-4 fw-bold shadow-sm rounded-4 text-white" style="background: var(--accent-gradient);">
+                        <i class="fa-solid fa-plus d-block fs-3 mb-2"></i> إضافة سيارة
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/Admin/Bookings" class="btn w-100 py-4 fw-bold shadow-sm rounded-4 bg-light text-dark border">
+                        <i class="fa-solid fa-list-check d-block fs-3 mb-2 text-primary"></i> مراجعة الحجوزات
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/Admin/ContactMessages" class="btn w-100 py-4 fw-bold shadow-sm rounded-4 bg-light text-dark border">
+                        <i class="fa-regular fa-envelope-open d-block fs-3 mb-2 text-success"></i> صندوق الرسائل
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="premium-card bg-dark text-white h-100" style="background: var(--sidebar-bg) !important;">
+            <h4 class="fw-bold mb-4 border-bottom border-secondary pb-3"><i class="fa-solid fa-circle-info text-info me-2"></i> حالة النظام</h4>
+            <div class="d-flex align-items-center mb-3">
+                <div class="spinner-grow text-success spinner-grow-sm me-3" role="status"></div>
+                <span class="fw-bold">النظام يعمل بكفاءة ممتاز</span>
+            </div>
+            <div class="d-flex align-items-center mb-3">
+                <i class="fa-solid fa-database text-primary fs-5 me-3"></i>
+                <span>قاعدة البيانات: متصلة</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="fa-solid fa-shield-check text-warning fs-5 me-3"></i>
+                <span>تحديثات الأمان: نشطة</span>
+            </div>
         </div>
     </div>
 </div>

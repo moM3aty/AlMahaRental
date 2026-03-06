@@ -1,0 +1,80 @@
+﻿@model IEnumerable<AlMahaRental.Models.SystemNotification>
+@{
+    int unreadCount = ViewBag.UnreadCount ?? 0;
+}
+
+<div class="position-relative" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fa-regular fa-bell fs-4 text-muted"></i>
+    @if (unreadCount > 0)
+    {
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow-sm" style="font-size: 0.65rem; border: 2px solid white;">
+            @unreadCount
+        </span>
+    }
+</div>
+
+<ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-0 mt-2" style="width: 320px; overflow: hidden;">
+    <li class="bg-light p-3 border-bottom d-flex justify-content-between align-items-center">
+        <span class="fw-bold text-dark fs-6">الإشعارات الجديدة</span>
+        @if (unreadCount > 0)
+        {
+            <span class="badge bg-primary rounded-pill">@unreadCount جديد</span>
+        }
+    </li>
+
+    <div style="max-height: 350px; overflow-y: auto;">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var notif in Model)
+            {
+            <li>
+                @* الربط بالأكشن الجديد الذي يحول الإشعار لمقروء ثم يوجهك للرابط الخاص به *@
+                <a class="dropdown-item d-flex align-items-start p-3 text-wrap border-bottom @(!notif.IsRead ? "bg-primary bg-opacity-10" : "opacity-75")"
+                   href="/Admin/Notifications/MarkAsReadAndRedirect/@notif.Id">
+
+                    <div class="mt-1 me-3 fs-5" style="color: var(--primary-color);">
+                        @if (notif.Type == "Booking")
+                        {
+                            <i class="fa-solid fa-calendar-check"></i>
+                        }
+                        else if (notif.Type == "User")
+                        {
+
+                            <i class="fa-solid fa-user-plus"></i>
+                        }
+                        else
+                        {
+
+                            <i class="fa-solid fa-envelope"></i>
+                        }
+                    </div>
+
+                    <div>
+                        <strong class="d-block mb-1 text-dark" style="font-size: 0.9rem;">@notif.Title</strong>
+                        <small class="text-muted lh-sm d-block mb-1" style="font-size: 0.8rem;">@notif.Message</small>
+                        <small class="text-secondary" style="font-size: 0.7rem;">
+                            <i class="fa-regular fa-clock me-1"></i>@notif.CreatedAt.ToString("hh:mm tt")
+                        </small>
+                    </div>
+
+                    @if (!notif.IsRead)
+                    {
+                        <span class="ms-auto p-1 bg-primary rounded-circle mt-2" style="width: 8px; height: 8px;"></span>
+                    }
+                </a>
+            </li>
+        }
+    }
+    else
+    {
+        <li class="text-center p-4 text-muted">
+            <i class="fa-regular fa-bell-slash fs-3 mb-2 opacity-50"></i>
+            <p class="mb-0 small">لا توجد إشعارات حالياً.</p>
+        </li>
+    }
+    </div>
+
+    <li class="bg-light p-2 border-top text-center">
+        <a href="/Admin/Notifications" class="text-decoration-none fw-bold text-primary w-100 d-block py-1">عرض كل الإشعارات</a>
+    </li>
+</ul>

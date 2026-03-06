@@ -4,23 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - لوحة تحكم المها</title>
-    <!-- استخدام Bootstrap 5 RTL -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
-    <!-- FontAwesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- خطوط عربية -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- ملف CSS المخصص للوحة التحكم -->
+    <!-- ربط ملف الـ CSS الاحترافي -->
     <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
 </head>
 <body>
     <div class="admin-wrapper">
+
         <!-- القائمة الجانبية (Sidebar) -->
         <aside class="admin-sidebar" id="sidebar">
-            <div class="sidebar-brand d-flex align-items-center justify-content-center">
-                <i class="fa-solid fa-car-side text-warning fs-3 me-2"></i>
-                <span class="brand-text fw-bold fs-4">المها للإدارة</span>
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-car-side"></i>
+                <span class="brand-text fw-bold fs-4 ms-2">المها للإدارة</span>
             </div>
+
+            <div class="sidebar-header">الرئيسية</div>
             <ul class="sidebar-nav">
                 <li class="nav-item">
                     <a href="/Admin/Dashboard" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Dashboard" ? "active" : "")">
@@ -28,22 +28,37 @@
                         <span>لوحة القيادة</span>
                     </a>
                 </li>
+            </ul>
+
+            <div class="sidebar-header">إدارة النظام</div>
+            <ul class="sidebar-nav">
                 <li class="nav-item">
                     <a href="/Admin/Cars" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Cars" ? "active" : "")">
                         <i class="fa-solid fa-car"></i>
-                        <span>إدارة السيارات</span>
+                        <span>أسطول السيارات</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/Admin/Bookings" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Bookings" ? "active" : "")">
                         <i class="fa-solid fa-calendar-check"></i>
-                        <span>الحجوزات</span>
+                        <span>الحجوزات والعقود</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/Admin/Users" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Users" ? "active" : "")">
                         <i class="fa-solid fa-users"></i>
-                        <span>العملاء والمستخدمين</span>
+                        <span>قاعدة العملاء</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-header">مركز التنبيهات</div>
+            <ul class="sidebar-nav">
+                <!-- الرابط الجديد لصفحة قائمة الإشعارات -->
+                <li class="nav-item">
+                    <a href="/Admin/Notifications" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Notifications" ? "active" : "")">
+                        <i class="fa-solid fa-bell"></i>
+                        <span>سجل الإشعارات</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -52,42 +67,68 @@
                         <span>رسائل الزوار</span>
                     </a>
                 </li>
-                <li class="nav-item mt-5">
-                    <a href="/" class="nav-link text-info">
-                        <i class="fa-solid fa-globe"></i>
-                        <span>العودة للموقع</span>
+                <li class="nav-item">
+                    <a href="/Admin/JobApplications" class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "JobApplications" ? "active" : "")">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>طلبات التوظيف</span>
                     </a>
                 </li>
-               
+            </ul>
+
+            <ul class="sidebar-nav mt-4 border-top border-secondary pt-3">
+                <li class="nav-item">
+                    <a href="/" class="nav-link" style="color: #38ef7d;">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>زيارة الموقع</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link" style="color: #ff6b6b;">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>تسجيل الخروج</span>
+                        </a>
+                    </form>
+                </li>
             </ul>
         </aside>
 
         <!-- المحتوى الرئيسي (Main Content) -->
         <div class="main-content">
-            <!-- الشريط العلوي (Topbar) -->
-            <header class="admin-header d-flex justify-content-between align-items-center">
-                <button class="btn btn-toggle" id="toggleSidebar">
-                    <i class="fa-solid fa-bars fs-4"></i>
+            <!-- Header -->
+            <header class="admin-header">
+                <button class="btn-toggle shadow-sm" id="toggleSidebar">
+                    <i class="fa-solid fa-bars-staggered fs-5"></i>
                 </button>
-                <div class="user-profile d-flex align-items-center">
-                    <div class="profile-info text-end me-3">
-                        <span class="d-block fw-bold text-dark">مدير النظام</span>
-                        <small class="text-muted">Admin</small>
+                <div class="d-flex align-items-center gap-4">
+
+                    <!-- جرس التنبيهات الديناميكي -->
+                    <div class="dropdown">
+                        @await Component.InvokeAsync("NotificationBell")
                     </div>
-                    <img src="https://ui-avatars.com/api/?name=Admin&background=b42a91&color=fff" alt="Admin" class="rounded-circle profile-img" width="45">
+
+                    <!-- الملف الشخصي للمدير -->
+                    <div class="user-profile shadow-sm">
+                        <div class="profile-info text-end d-none d-md-block">
+                            <span class="d-block fw-bold" style="color: var(--primary-color);">مدير النظام</span>
+                            <small class="text-muted fw-bold">إدارة عليا</small>
+                        </div>
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=b42a91&color=fff&bold=true" alt="Admin" class="rounded-circle" width="40">
+                    </div>
                 </div>
             </header>
 
-            <!-- منطقة العرض (RenderBody) -->
-            <main class="content-area p-4">
+            <!-- منطقة عرض المحتوى لكل صفحة -->
+            <main class="content-area">
                 @RenderBody()
             </main>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.css"></script>
-    <!-- سكربت بسيط لفتح وإغلاق القائمة الجانبية -->
+    <!-- ملفات الجافاسكريبت الأساسية -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // سكربت إخفاء وإظهار القائمة الجانبية
         document.getElementById('toggleSidebar').addEventListener('click', function () {
             document.getElementById('sidebar').classList.toggle('collapsed');
             document.querySelector('.main-content').classList.toggle('expanded');

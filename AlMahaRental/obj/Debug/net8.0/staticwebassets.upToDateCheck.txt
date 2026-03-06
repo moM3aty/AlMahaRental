@@ -42,7 +42,7 @@ wwwroot\images\service-2.jpg
 wwwroot\images\service-4.jpg
 wwwroot\images\service-5.jpg
 wwwroot\images\service-6.jpg
-wwwroot\images\service-7.avif
+wwwroot\images\service-7.jpg
 wwwroot\images\service-bg.jpg
 wwwroot\images\service3.jpg
 wwwroot\images\site-footer.jpg
@@ -110,6 +110,7 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\uploads\resumes\9048fab6-9ccf-478f-8b5c-d4dd14bfe8a0_Mohamed Ibrahim Mohamed AboElmaaty AbdElrazik Volunteering.pdf
 wwwroot\webfonts\fa-brands-400.ttf
 wwwroot\webfonts\fa-brands-400.woff2
 wwwroot\webfonts\fa-regular-400.ttf

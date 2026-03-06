@@ -2387,12 +2387,13 @@ textarea.form-control {
 }
 
 .career-form-section .upload-box {
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
 }
 
 .career-form-section .btn-upload {

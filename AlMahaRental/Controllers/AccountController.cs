@@ -1,77 +1,31 @@
 ﻿using AlMahaRental.Models;
+using AlMahaRental.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace AlMahaRental.Controllers
 {
-    // الكنترولر المسؤول عن تسجيل الدخول وإنشاء الحسابات
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ApplicationDbContext _context;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager,
+                                 SignInManager<ApplicationUser> signInManager,
+                                 ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
-        // 1. عرض صفحة تسجيل الدخول
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
+        public IActionResult Register() => View();
 
-        // 2. معالجة بيانات تسجيل الدخول
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-
-            if (ModelState.IsValid)
-            {
-                // الاعتماد على رقم الهوية كـ UserName في نظامنا
-                var result = await _signInManager.PasswordSignInAsync(model.IdNumber, model.Password, model.RememberMe, lockoutOnFailure: false);
-
-                if (result.Succeeded)
-                {
-                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        // إذا كان المستخدم أدمن، نوجهه للوحة التحكم، وإلا للصفحة الرئيسية
-                        var user = await _userManager.FindByNameAsync(model.IdNumber);
-                        if (await _userManager.IsInRoleAsync(user, "Admin"))
-                        {
-                            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
-                        }
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "رقم الهوية أو كلمة المرور غير صحيحة.");
-                    return View(model);
-                }
-            }
-            return View(model);
-        }
-
-        // 3. عرض صفحة إنشاء حساب جديد
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        // 4. معالجة بيانات الحساب الجديد
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -80,22 +34,33 @@ namespace AlMahaRental.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.IdNumber, // استخدام رقم الهوية كاسم مستخدم
-                    IdNumber = model.IdNumber,
+                    UserName = model.IdNumber,
+                    Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
+                    IdNumber = model.IdNumber,
                     PhoneNumber = model.PhoneNumber,
-                    Email = model.IdNumber + "@almaha.com" // بريد افتراضي لمتطلبات Identity
+                    CreatedAt = DateTime.UtcNow
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    // إعطاء المستخدم الجديد صلاحية User العادية
                     await _userManager.AddToRoleAsync(user, "User");
 
-                    // تسجيل الدخول فوراً بعد إنشاء الحساب
+                    // === إضافة إشعار: تسجيل عميل جديد ===
+                    _context.SystemNotifications.Add(new SystemNotification
+                    {
+                        Title = "تسجيل عميل جديد",
+                        Message = $"انضم العميل {user.FirstName} {user.LastName} إلى عائلة المها حالياً.",
+                        Type = "User",
+                        LinkUrl = "/Admin/Users",
+                        IsRead = false,
+                        CreatedAt = DateTime.UtcNow
+                    });
+                    await _context.SaveChangesAsync();
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -108,7 +73,25 @@ namespace AlMahaRental.Controllers
             return View(model);
         }
 
-        // 5. تسجيل الخروج
+        [HttpGet]
+        public IActionResult Login() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.IdNumber, model.Password, model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError(string.Empty, "محاولة دخول غير صحيحة. تأكد من رقم الهوية وكلمة المرور.");
+            }
+            return View(model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
@@ -118,9 +101,9 @@ namespace AlMahaRental.Controllers
         }
     }
 
-    // --- ViewModels (تم وضعها هنا للتبسيط والالتزام بعدد الملفات) ---
+// --- ViewModels (تم وضعها هنا للتبسيط والالتزام بعدد الملفات) ---
 
-    public class LoginViewModel
+public class LoginViewModel
     {
         [Required(ErrorMessage = "رقم الهوية مطلوب")]
         [Display(Name = "رقم الهوية")]
@@ -144,6 +127,9 @@ namespace AlMahaRental.Controllers
         [Required(ErrorMessage = "الاسم الأخير مطلوب")]
         [Display(Name = "الاسم الأخير")]
         public string LastName { get; set; } = string.Empty;
+        [Required(ErrorMessage = "الايميل مطلوب")]
+        [Display(Name = "الايميل")]
+        public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "رقم الهاتف مطلوب")]
         [Display(Name = "رقم الهاتف")]

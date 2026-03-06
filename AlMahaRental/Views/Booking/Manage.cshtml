@@ -1,0 +1,24 @@
+﻿@model AlMahaRental.Models.Booking
+@{
+    ViewData["Title"] = "تفاصيل الحجز";
+}
+<div class="container py-5 my-5" style="margin-top: 90px !important;">
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        <div class="row g-0">
+            <div class="col-md-5 bg-light p-5 text-center">
+                <img src="@Model.Car?.ImageUrl" class="img-fluid mb-4" alt="Car">
+                <h4 class="fw-bold">@Model.Car?.Name</h4>
+                <span class="badge bg-primary px-4 py-2 rounded-pill">#@Model.BookingReference</span>
+            </div>
+            <div class="col-md-7 bg-white p-5">
+                <h3 class="fw-bold text-purple border-bottom pb-3 mb-4">بيانات العقد</h3>
+                <p><strong>العميل:</strong> @Model.User?.FirstName @Model.User?.LastName</p>
+                <p><strong>الاستلام:</strong> @Model.PickupLocation (@Model.PickupDate.ToShortDateString())</p>
+                <p><strong>التسليم:</strong> @Model.ReturnLocation (@Model.ReturnDate.ToShortDateString())</p>
+                <div class="alert alert-info mt-4"><strong>الحالة:</strong> @Model.Status</div>
+                <h4 class="text-success fw-bold mt-3">الإجمالي: @Model.TotalPrice ر.س</h4>
+                <a href="/" class="btn btn-outline-secondary mt-4 rounded-pill">العودة للرئيسية</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,19 +2,17 @@
     ViewData["Title"] = "الرئيسية";
 }
 
-<!-- نقوم هنا بحقن قاعدة البيانات لجعل سلايدر السيارات ديناميكياً -->
 @using AlMahaRental.Data
 @inject ApplicationDbContext _context
 @{
-    // جلب 6 سيارات متاحة لعرضها في سلايدر العروض
+    // جلب 6 سيارات متاحة لعرضها في سلايدر العروض بشكل ديناميكي
     var topCars = _context.Cars.Where(c => c.IsAvailable).Take(6).ToList();
 }
 
-<!-- 1. Header Slider (Swiper) كامل بـ 3 صور -->
+<!-- 1. Hero Header Slider -->
 <header class="hero-header">
     <div class="swiper headerSwiper">
         <div class="swiper-wrapper">
-            <!-- الشريحة الأولى -->
             <div class="swiper-slide">
                 <div class="slide-bg" style="background-image: url('/images/slider-1.png');"></div>
                 <div class="container h-100 d-flex align-items-center justify-content-center">
@@ -35,7 +33,6 @@
                     </div>
                 </div>
             </div>
-            <!-- الشريحة الثانية -->
             <div class="swiper-slide">
                 <div class="slide-bg" style="background-image: url('/images/slider-2.jpg');"></div>
                 <div class="container h-100 d-flex align-items-center justify-content-center">
@@ -56,7 +53,6 @@
                     </div>
                 </div>
             </div>
-            <!-- الشريحة الثالثة -->
             <div class="swiper-slide">
                 <div class="slide-bg" style="background-image: url('/images/slider-3.png');"></div>
                 <div class="container h-100 d-flex align-items-center justify-content-center">
@@ -81,17 +77,24 @@
     </div>
 </header>
 
-<!-- 2. Booking Section (بحث وحجز) -->
+<!-- 2. Booking Section -->
 <section class="booking">
     <div class="booking-container py-3">
         <div class="container-fluid">
-            <div class="row g-4">
+            <div class="row g-4 ">
                 <div class="col-lg-6 justify-content-start">
                     <div class="booking-content">
                         <div class="tab-buttons">
-                            <button class="tab-btn active" data-tab="daily" data-ar="يومي" data-en="Daily">يومي</button>
-                            <button class="tab-btn" data-tab="weekly" data-ar="اسبوعي" data-en="Weekly">اسبوعي</button>
-                            <button class="tab-btn" data-tab="monthly" data-ar="فليكس ( للتأجير الشهري )" data-en="Flex (Monthly Rental)">فليكس ( للتأجير الشهري )</button>
+                            <button class="tab-btn active" data-tab="daily" data-ar="يومي" data-en="Daily">
+                                يومي
+                            </button>
+                            <button class="tab-btn" data-tab="weekly" data-ar="اسبوعي" data-en="Weekly">
+                                اسبوعي
+                            </button>
+                            <button class="tab-btn" data-tab="monthly" data-ar="فليكس ( للتأجير الشهري )"
+                                    data-en="Flex (Monthly Rental)">
+                                فليكس ( للتأجير الشهري )
+                            </button>
                         </div>
                         <form class="booking-form" asp-controller="Booking" asp-action="Search">
                             <div class="row g-4 daily-reserve">
@@ -100,106 +103,203 @@
                                         <label data-ar="موقع الاستلام" data-en="Pickup Location">موقع الاستلام</label>
                                         <div class="input-wrapper location-wrapper">
                                             <i class="fas fa-map-marker-alt"></i>
-                                            <input type="text" class="form-control location-input" id="pickupLocation" placeholder="اختر فرع الاستلام" data-ar-placeholder="اختر فرع الاستلام" data-en-placeholder="Select Pickup Branch">
+                                            <input type="text" class="form-control location-input" name="PickupLocation"
+                                                   id="pickupLocation" placeholder="اختر فرع الاستلام"
+                                                   data-ar-placeholder="اختر فرع الاستلام"
+                                                   data-en-placeholder="Select Pickup Branch">
                                             <div class="mega-location-dropdown">
                                                 <div class="mega-container">
                                                     <div class="mega-categories">
-                                                        <div class="mega-category active" data-type="airports" data-ar="المطارات" data-en="Airports">المطارات</div>
-                                                        <div class="mega-category" data-type="branches" data-ar="جميع الفروع" data-en="All Branches">جميع الفروع</div>
+                                                        <div class="mega-category active" data-type="airports"
+                                                             data-ar="المطارات" data-en="Airports">
+                                                            المطارات
+                                                        </div>
+                                                        <div class="mega-category" data-type="branches"
+                                                             data-ar="جميع الفروع" data-en="All Branches">
+                                                            جميع الفروع
+                                                        </div>
                                                     </div>
                                                     <div class="mega-branches">
-                                                        <div class="mega-branch-item" data-name="مطار أبها" data-hours="24 ساعة" data-location="مطار أبها - صالة الوصول" data-ar="مطار أبها" data-en="Abha Airport">مطار أبها</div>
-                                                        <div class="mega-branch-item" data-name="مطار الأحساء" data-hours="6 ص - 12 م" data-location="مطار الأحساء - البوابة الرئيسية" data-ar="مطار الأحساء" data-en="Al Ahsa Airport">مطار الأحساء</div>
-                                                        <div class="mega-branch-item" data-name="الفرع الرئيسي" data-hours="8 ص - 11 م" data-location="شارع الملك فهد" data-ar="الفرع الرئيسي" data-en="Main Branch">الفرع الرئيسي</div>
+                                                        <div class="mega-branch-item" data-name="مطار أبها"
+                                                             data-hours="24 ساعة"
+                                                             data-location="مطار أبها - صالة الوصول"
+                                                             data-ar="مطار أبها" data-en="Abha Airport">
+                                                            مطار أبها
+                                                        </div>
+                                                        <div class="mega-branch-item" data-name="مطار الأحساء"
+                                                             data-hours="6 ص - 12 م"
+                                                             data-location="مطار الأحساء - البوابة الرئيسية"
+                                                             data-ar="مطار الأحساء" data-en="Al Ahsa Airport">
+                                                            مطار الأحساء
+                                                        </div>
+                                                        <div class="mega-branch-item" data-name="الفرع الرئيسي"
+                                                             data-hours="8 ص - 11 م" data-location="شارع الملك فهد"
+                                                             data-ar="الفرع الرئيسي" data-en="Main Branch">
+                                                            الفرع الرئيسي
+                                                        </div>
                                                     </div>
                                                     <div class="mega-info">
-                                                        <h6 data-ar="توقيت الفرع" data-en="Branch Hours">توقيت الفرع</h6>
-                                                        <p id="branchHours" data-ar="اختر فرع لعرض التفاصيل" data-en="Select a branch to view details">اختر فرع لعرض التفاصيل</p>
-                                                        <h6 data-ar="موقع الفرع" data-en="Branch Location">موقع الفرع</h6>
-                                                        <p id="branchLocation" data-ar="---" data-en="---">---</p>
+                                                        <h6 data-ar="توقيت الفرع" data-en="Branch Hours">
+                                                            توقيت
+                                                            الفرع
+                                                        </h6>
+                                                        <p id="branchHours" data-ar="اختر فرع لعرض التفاصيل"
+                                                           data-en="Select a branch to view details">
+                                                            اختر فرع لعرض التفاصيل
+                                                        </p>
+
+                                                        <h6 data-ar="موقع الفرع" data-en="Branch Location">
+                                                            موقع
+                                                            الفرع
+                                                        </h6>
+                                                        <p id="branchLocation" data-ar="---" data-en="---">
+                                                            ---
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group drop-off-group">
-                                        <label data-ar="موقع التسليم" data-en="Drop-off Location">موقع التسليم</label>
+                                        <label data-ar="موقع التسليم" data-en="Drop-off Location">
+                                            موقع
+                                            التسليم
+                                        </label>
                                         <div class="input-wrapper location-wrapper">
                                             <i class="fas fa-map-marker-alt"></i>
-                                            <input type="text" class="form-control location-input" id="dropoffLocation" placeholder="اختر فرع التوصيل" data-ar-placeholder="اختر فرع التوصيل" data-en-placeholder="Select Drop-off Branch">
-                                            <!-- نفس الميجا منيو السابقة للتوصيل -->
+                                            <input type="text" class="form-control location-input" name="DropoffLocation"
+                                                   id="dropoffLocation" placeholder="اختر فرع التوصيل"
+                                                   data-ar-placeholder="اختر فرع التوصيل"
+                                                   data-en-placeholder="Select Drop-off Branch">
                                             <div class="mega-location-dropdown">
                                                 <div class="mega-container">
                                                     <div class="mega-categories">
-                                                        <div class="mega-category active" data-type="airports" data-ar="المطارات" data-en="Airports">المطارات</div>
-                                                        <div class="mega-category" data-type="branches" data-ar="جميع الفروع" data-en="All Branches">جميع الفروع</div>
+                                                        <div class="mega-category active" data-type="airports"
+                                                             data-ar="المطارات" data-en="Airports">
+                                                            المطارات
+                                                        </div>
+                                                        <div class="mega-category" data-type="branches"
+                                                             data-ar="جميع الفروع" data-en="All Branches">
+                                                            جميع الفروع
+                                                        </div>
                                                     </div>
                                                     <div class="mega-branches">
-                                                        <div class="mega-branch-item" data-name="مطار أبها" data-hours="24 ساعة" data-location="مطار أبها - صالة الوصول" data-ar="مطار أبها" data-en="Abha Airport">مطار أبها</div>
-                                                        <div class="mega-branch-item" data-name="الفرع الرئيسي" data-hours="8 ص - 11 م" data-location="شارع الملك فهد" data-ar="الفرع الرئيسي" data-en="Main Branch">الفرع الرئيسي</div>
+                                                        <div class="mega-branch-item" data-name="مطار أبها"
+                                                             data-hours="24 ساعة"
+                                                             data-location="مطار أبها - صالة الوصول"
+                                                             data-ar="مطار أبها" data-en="Abha Airport">
+                                                            مطار أبها
+                                                        </div>
+                                                        <div class="mega-branch-item" data-name="مطار الأحساء"
+                                                             data-hours="6 ص - 12 م"
+                                                             data-location="مطار الأحساء - البوابة الرئيسية"
+                                                             data-ar="مطار الأحساء" data-en="Al Ahsa Airport">
+                                                            مطار الأحساء
+                                                        </div>
+                                                        <div class="mega-branch-item" data-name="الفرع الرئيسي"
+                                                             data-hours="8 ص - 11 م" data-location="شارع الملك فهد"
+                                                             data-ar="الفرع الرئيسي" data-en="Main Branch">
+                                                            الفرع الرئيسي
+                                                        </div>
                                                     </div>
                                                     <div class="mega-info">
-                                                        <h6 data-ar="توقيت الفرع" data-en="Branch Hours">توقيت الفرع</h6>
-                                                        <p id="branchHours" data-ar="اختر فرع لعرض التفاصيل" data-en="Select a branch to view details">اختر فرع لعرض التفاصيل</p>
+                                                        <h6 data-ar="توقيت الفرع" data-en="Branch Hours">
+                                                            توقيت
+                                                            الفرع
+                                                        </h6>
+                                                        <p id="branchHours" data-ar="اختر فرع لعرض التفاصيل"
+                                                           data-en="Select a branch to view details">
+                                                            اختر فرع لعرض التفاصيل
+                                                        </p>
+
+                                                        <h6 data-ar="موقع الفرع" data-en="Branch Location">
+                                                            موقع
+                                                            الفرع
+                                                        </h6>
+                                                        <p id="branchLocation" data-ar="---" data-en="---">
+                                                            ---
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label data-ar="تاريخ الاستلام" data-en="Pickup Date">تاريخ الاستلام</label>
+                                        <label data-ar="تاريخ الاستلام" data-en="Pickup Date">
+                                            تاريخ
+                                            الاستلام
+                                        </label>
                                         <div class="input-wrapper">
                                             <i class="fas fa-calendar"></i>
-                                            <input type="text" class="form-control date-picker" id="pickup-date" placeholder="00/00/0000" data-ar-placeholder="00/00/0000" data-en-placeholder="00/00/0000">
+                                            <input type="text" class="form-control date-picker" id="pickup-date" name="PickupDate"
+                                                   placeholder="00/00/0000" data-ar-placeholder="00/00/0000"
+                                                   data-en-placeholder="00/00/0000">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label data-ar="وقت الاستلام" data-en="Pickup Time">وقت الاستلام</label>
                                         <div class="input-wrapper">
                                             <i class="fas fa-clock"></i>
-                                            <input type="text" class="form-control" placeholder="00:00" data-ar-placeholder="00:00" data-en-placeholder="00:00">
+                                            <input type="text" class="form-control" placeholder="00:00"
+                                                   data-ar-placeholder="00:00" data-en-placeholder="00:00">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label data-ar="تاريخ التسليم" data-en="Return Date">تاريخ التسليم</label>
+                                        <label data-ar="تاريخ التسليم" data-en="Return Date">
+                                            تاريخ
+                                            التسليم
+                                        </label>
                                         <div class="input-wrapper">
                                             <i class="fas fa-calendar"></i>
-                                            <input type="text" class="form-control date-picker" id="return-date" placeholder="00/00/0000" data-ar-placeholder="00/00/0000" data-en-placeholder="00/00/0000">
+                                            <input type="text" class="form-control date-picker" id="return-date" name="ReturnDate"
+                                                   placeholder="00/00/0000" data-ar-placeholder="00/00/0000"
+                                                   data-en-placeholder="00/00/0000">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group duration-group">
                                         <label data-ar="وقت التسليم" data-en="Return Time">وقت التسليم</label>
                                         <div class="input-wrapper">
                                             <i class="fas fa-clock"></i>
-                                            <input type="text" class="form-control" placeholder="00:00" data-ar-placeholder="00:00" data-en-placeholder="00:00">
+                                            <input type="text" class="form-control" placeholder="00:00"
+                                                   data-ar-placeholder="00:00" data-en-placeholder="00:00">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group month-reserve" style="display: none;">
                                         <label data-ar="المده" data-en="Duration">المده</label>
                                         <div class="input-wrapper">
                                             <i class="fas fa-clock"></i>
-                                            <input type="text" class="form-control" placeholder="شهر مايو" data-ar-placeholder="شهر مايو" data-en-placeholder="May Month">
+                                            <input type="text" class="form-control" placeholder="شهر مايو"
+                                                   data-ar-placeholder="شهر مايو" data-en-placeholder="May Month">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn-next text-decoration-none text-center" data-ar="بحث" data-en="Search">بحث</button>
+
+                            <button type="submit" class="btn-next text-decoration-none text-center"
+                                    data-ar="بحث" data-en="Search">
+                                بحث
+                            </button>
                         </form>
                     </div>
                 </div>
-                <!-- 3 خطوات بسيطة -->
                 <div class="col-lg-6">
                     <div class="row g-4 p-3 justify-content-center">
                         <div class="d-flex gap-3 align-items-center mb-4 justify-content-center">
@@ -208,7 +308,8 @@
                                 <span class="block h-20 w-px bg-primary"></span>
                                 <span class="block h-30 w-px bg-primary"></span>
                             </div>
-                            <h2 data-ar="استئجار سيارة في ثلاث خطوات بسيطة" data-en="Rent a Car in 3 Simple Steps">
+                            <h2 data-ar="استئجار سيارة في ثلاث خطوات بسيطة"
+                                data-en="Rent a Car in 3 Simple Steps">
                                 استئجار سيارة في ثلاث خطوات بسيطة
                             </h2>
                             <div class="d-flex gap-2 align-items-center">
@@ -226,9 +327,13 @@
                                 </div>
                                 <h3>
                                     <span class="text-purple">01.</span>
-                                    <span data-ar="اختر سيارتك واحجز" data-en="Choose Your Car and Book">اختر سيارتك واحجز</span>
+                                    <span data-ar="اختر سيارتك واحجز" data-en="Choose Your Car and Book">
+                                        اختر سيارتك واحجز
+                                    </span>
                                 </h3>
-                                <p class="text-muted fw-semibold" data-ar="حدد التواريخ ومكان الاستلام، واستعرض تشكيلتنا المتنوعة من السيارات." data-en="Select your dates and pickup location, and browse our diverse car collection.">
+                                <p class="text-muted fw-semibold"
+                                   data-ar="حدد التواريخ ومكان الاستلام، واستعرض تشكيلتنا المتنوعة من السيارات."
+                                   data-en="Select your dates and pickup location, and browse our diverse car collection.">
                                     حدد التواريخ ومكان الاستلام، واستعرض تشكيلتنا المتنوعة من السيارات.
                                 </p>
                             </div>
@@ -240,9 +345,13 @@
                                 </div>
                                 <h3>
                                     <span class="text-purple">02.</span>
-                                    <span data-ar="تأكيد الحجز والدفع" data-en="Confirm Booking & Payment">تأكيد الحجز والدفع</span>
+                                    <span data-ar="تأكيد الحجز والدفع" data-en="Confirm Booking & Payment">
+                                        تأكيد الحجز والدفع
+                                    </span>
                                 </h3>
-                                <p class="text-muted fw-semibold" data-ar="قم بإتمام حجزك بسهولة وأمان عبر الإنترنت مع تسعير شفاف يشمل جميع التكاليف." data-en="Complete your booking easily and securely online with transparent pricing covering all costs.">
+                                <p class="text-muted fw-semibold"
+                                   data-ar="قم بإتمام حجزك بسهولة وأمان عبر الإنترنت مع تسعير شفاف يشمل جميع التكاليف."
+                                   data-en="Complete your booking easily and securely online with transparent pricing covering all costs.">
                                     قم بإتمام حجزك بسهولة وأمان عبر الإنترنت مع تسعير شفاف يشمل جميع التكاليف.
                                 </p>
                             </div>
@@ -254,9 +363,13 @@
                                 </div>
                                 <h3>
                                     <span class="text-purple">03.</span>
-                                    <span data-ar="استلام السيارة والانطلاق" data-en="Pick Up the Car & Go">استلام السيارة والانطلاق</span>
+                                    <span data-ar="استلام السيارة والانطلاق" data-en="Pick Up the Car & Go">
+                                        استلام السيارة والانطلاق
+                                    </span>
                                 </h3>
-                                <p class="text-muted fw-semibold" data-ar="قدّم رخصة القيادة وتأكيد الحجز في مكتبنا، ثم انطلق بثقة نحو وجهتك." data-en="Present your driving license and booking confirmation at our office, then confidently head to your destination.">
+                                <p class="text-muted fw-semibold"
+                                   data-ar="قدّم رخصة القيادة وتأكيد الحجز في مكتبنا، ثم انطلق بثقة نحو وجهتك."
+                                   data-en="Present your driving license and booking confirmation at our office, then confidently head to your destination.">
                                     قدّم رخصة القيادة وتأكيد الحجز في مكتبنا، ثم انطلق بثقة نحو وجهتك.
                                 </p>
                             </div>
@@ -268,142 +381,210 @@
     </div>
 </section>
 
-<!-- 3. Cards Section & Manage Reserve -->
+<!-- 3. Cards Section -->
 <section class="cards bg-white">
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-4">
-                <a asp-action="Services" class="card card-1 text-decoration-none">
-                    <h2 data-ar="خدماتنا" data-en="Our Services">خدماتنا</h2>
-                    <div class="icon"><i class="fas fa-arrow-right"></i></div>
+                <a asp-controller="Home" asp-action="Services" class="card card-1 text-decoration-none">
+                    <h2 data-ar="خدماتنا" data-en="Our Services">
+                        خدماتنا
+                    </h2>
+                    <div class="icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </a>
             </div>
             <div class="col-lg-4">
-                <a asp-action="Offers" class="card card-2 text-decoration-none">
-                    <h2 data-ar="العروض" data-en="Offers">العروض</h2>
-                    <div class="icon"><i class="fas fa-arrow-right"></i></div>
+                <a asp-controller="Home" asp-action="Offers" class="card card-2 text-decoration-none">
+                    <h2 data-ar="العروض" data-en="Offers">
+                        العروض
+                    </h2>
+                    <div class="icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </a>
             </div>
             <div class="col-lg-4">
-                <a href="#manageReserve" class="card card-3 text-decoration-none">
-                    <h2 data-ar="حجز السيارات" data-en="Car Booking">حجز السيارات</h2>
-                    <div class="icon"><i class="fas fa-arrow-right"></i></div>
+                <a asp-controller="Home" asp-action="Fleet" class="card card-3 text-decoration-none">
+                    <h2 data-ar="حجز السيارات" data-en="Car Booking">
+                        حجز السيارات
+                    </h2>
+                    <div class="icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </a>
             </div>
-        </div>
-
-        <!-- إدارة الحجز -->
-        <div class="row g-4 mt-5 align-items-center" id="manageReserve">
-            <div class="col-lg-8">
-                <div class="content">
-                    <p class="text-muted fw-semibold lh-lg" data-ar="تقدم لكم شركة المها لتأجير السيارات أحدث وأفضل أنواع السيارات لتجعل رحلتك أكثر راحة وأمانًا. إذا كنت تبحث عن سيارة للإيجار سواء كانت جديدة أو بحالة ممتازة، فقط أخبرنا بما تحتاج إليه وسنوفّره لك بكل سهولة. نحن في المها نضع رضا عملائنا على رأس أولوياتنا، ونسعى دائمًا لتقديم مجموعة متكاملة من الخدمات التي تلبي مختلف الاحتياجات والتطلعات. نوفر أسطولًا متنوعًا من السيارات التي تناسب جميع الأذواق وأنماط الحياة، بأسعار تنافسية وعروض مميزة. كما نقدم خدماتنا في مختلف أنحاء المملكة العربية السعودية، مع التزام كامل بتقديم خدمة عملاء احترافية وسريعة الاستجابة. هدفنا هو كسب ثقة عملائنا من خلال الجودة، الشفافية، والاهتمام بأدق التفاصيل. مع المها… راحتك هي أولويتنا، ورضاك هو نجاحنا." data-en="Al Maha Car Rental offers you the latest and best types of cars to make your journey more comfortable and safe. Whether you are looking for a car for rent, new or in excellent condition, just tell us what you need and we will provide it easily. At Al Maha, customer satisfaction is our top priority, and we always strive to provide a comprehensive range of services that meet various needs and expectations. We offer a diverse fleet of cars to suit all tastes and lifestyles, at competitive prices and special offers. We also provide our services across Saudi Arabia, with full commitment to professional and responsive customer service. Our goal is to earn our customers' trust through quality, transparency, and attention to the finest details. With Al Maha… your comfort is our priority, and your satisfaction is our success.">
-                        تقدم لكم شركة المها لتأجير السيارات أحدث وأفضل أنواع السيارات لتجعل رحلتك أكثر راحة وأمانًا.
-                        إذا كنت تبحث عن سيارة للإيجار سواء كانت جديدة أو بحالة ممتازة، فقط أخبرنا بما تحتاج إليه
-                        وسنوفّره لك بكل سهولة.
-                        نحن في المها نضع رضا عملائنا على رأس أولوياتنا، ونسعى دائمًا لتقديم مجموعة متكاملة من
-                        الخدمات التي تلبي مختلف الاحتياجات والتطلعات. نوفر أسطولًا متنوعًا من السيارات التي تناسب
-                        جميع الأذواق وأنماط الحياة، بأسعار تنافسية وعروض مميزة.
-                        كما نقدم خدماتنا في مختلف أنحاء المملكة العربية السعودية، مع التزام كامل بتقديم خدمة عملاء
-                        احترافية وسريعة الاستجابة. هدفنا هو كسب ثقة عملائنا من خلال الجودة، الشفافية، والاهتمام بأدق
-                        التفاصيل.
-                        <br><br>
-                        <span class="text-purple fw-bold" data-ar="مع المها… راحتك هي أولويتنا، ورضاك هو نجاحنا." data-en="With Al Maha… your comfort is our priority, and your satisfaction is our success.">
-                            مع المها… راحتك هي أولويتنا، ورضاك هو نجاحنا.
-                        </span>
-                    </p>
+            <!-- إدارة الحجز -->
+            <div class="row g-4 mt-5 align-items-center" id="manageReserve">
+                <div class="col-lg-8">
+                    <div class="content">
+                        <p class="text-muted fw-semibold lh-lg"
+                           data-ar="تقدم لكم شركة المها لتأجير السيارات أحدث وأفضل أنواع السيارات لتجعل رحلتك أكثر راحة وأمانًا. إذا كنت تبحث عن سيارة للإيجار سواء كانت جديدة أو بحالة ممتازة، فقط أخبرنا بما تحتاج إليه وسنوفّره لك بكل سهولة. نحن في المها نضع رضا عملائنا على رأس أولوياتنا، ونسعى دائمًا لتقديم مجموعة متكاملة من الخدمات التي تلبي مختلف الاحتياجات والتطلعات. نوفر أسطولًا متنوعًا من السيارات التي تناسب جميع الأذواق وأنماط الحياة، بأسعار تنافسية وعروض مميزة. كما نقدم خدماتنا في مختلف أنحاء المملكة العربية السعودية، مع التزام كامل بتقديم خدمة عملاء احترافية وسريعة الاستجابة. هدفنا هو كسب ثقة عملائنا من خلال الجودة، الشفافية، والاهتمام بأدق التفاصيل. مع المها… راحتك هي أولويتنا، ورضاك هو نجاحنا."
+                           data-en="Al Maha Car Rental offers you the latest and best types of cars to make your journey more comfortable and safe. Whether you are looking for a car for rent, new or in excellent condition, just tell us what you need and we will provide it easily. At Al Maha, customer satisfaction is our top priority, and we always strive to provide a comprehensive range of services that meet various needs and expectations. We offer a diverse fleet of cars to suit all tastes and lifestyles, at competitive prices and special offers. We also provide our services across Saudi Arabia, with full commitment to professional and responsive customer service. Our goal is to earn our customers' trust through quality, transparency, and attention to the finest details. With Al Maha… your comfort is our priority, and your satisfaction is our success.">
+                            تقدم لكم شركة المها لتأجير السيارات أحدث وأفضل أنواع السيارات لتجعل رحلتك أكثر راحة وأمانًا.
+                            إذا كنت تبحث عن سيارة للإيجار سواء كانت جديدة أو بحالة ممتازة، فقط أخبرنا بما تحتاج إليه
+                            وسنوفّره لك بكل سهولة.
+                            نحن في المها نضع رضا عملائنا على رأس أولوياتنا، ونسعى دائمًا لتقديم مجموعة متكاملة من
+                            الخدمات التي تلبي مختلف الاحتياجات والتطلعات. نوفر أسطولًا متنوعًا من السيارات التي تناسب
+                            جميع الأذواق وأنماط الحياة، بأسعار تنافسية وعروض مميزة.
+                            كما نقدم خدماتنا في مختلف أنحاء المملكة العربية السعودية، مع التزام كامل بتقديم خدمة عملاء
+                            احترافية وسريعة الاستجابة. هدفنا هو كسب ثقة عملائنا من خلال الجودة، الشفافية، والاهتمام بأدق
+                            التفاصيل.
+                            <br><br>
+                            <span class="text-purple fw-bold" data-ar="مع المها… راحتك هي أولويتنا، ورضاك هو نجاحنا."
+                                  data-en="With Al Maha… your comfort is our priority, and your satisfaction is our success.">
+                                مع المها… راحتك هي أولويتنا، ورضاك هو نجاحنا.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="reserve-form">
+                        <form asp-controller="Booking" asp-action="Manage" method="get">
+                            <h2 class="mb-4 text-white">
+                                <i class="fa-solid fa-calendar-check mx-2"></i>
+                                <span data-ar="ادارة الحجز" data-en="Booking Management">
+                                    ادارة الحجز
+                                </span>
+                            </h2>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="bookingRef" placeholder="ادخل رقم الحجز او العقد"
+                                       data-ar="ادخل رقم الحجز او العقد" data-en="Enter Booking or Contract Number"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="idNumber" placeholder="ادخل رقم الهوية"
+                                       data-ar="ادخل رقم الهوية" data-en="Enter ID Number" required>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-submit" data-ar="البحث" data-en="Search">
+                                    البحث
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="reserve-form">
-                    <form action="">
-                        <h2 class="mb-4 text-white">
-                            <i class="fa-solid fa-calendar-check mx-2"></i>
-                            <span data-ar="ادارة الحجز" data-en="Booking Management">ادارة الحجز</span>
-                        </h2>
-                        <div class="form-group">
-                            <input class="form-control" type="text" placeholder="ادخل رقم الحجز او العقد" data-ar="ادخل رقم الحجز او العقد" data-en="Enter Booking or Contract Number" required>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="text" placeholder="ادخل رقم الهوية" data-ar="ادخل رقم الهوية" data-en="Enter ID Number" required>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-submit" data-ar="البحث" data-en="Search">البحث</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
-    </div>
 </section>
 
-<!-- 4. Feature Section (لماذا تختارنا؟) -->
+<!-- 4. Feature Section -->
 <section class="feature-section">
     <div class="container">
         <div class="heading text-center d-flex flex-column gap-3 mb-5 justify-content-center align-items-center">
-            <span data-ar="لماذا تختارنا ؟" data-en="Why Choose Us?">لماذا تختارنا ؟</span>
-            <h2 class="text-center" data-ar="جودة وخدمة لا مثيل لهما لتلبية جميع احتياجاتك" data-en="Unmatched Quality and Service to Meet All Your Needs">
+            <span data-ar="لماذا تختارنا ؟" data-en="Why Choose Us?">
+                لماذا تختارنا ؟
+            </span>
+            <h2 class="text-center" data-ar="جودة وخدمة لا مثيل لهما لتلبية جميع احتياجاتك"
+                data-en="Unmatched Quality and Service to Meet All Your Needs">
                 جودة وخدمة لا مثيل لهما لتلبية جميع احتياجاتك
             </h2>
         </div>
         <div class="row g-4">
             <div class="col-lg-4">
                 <div class="feature-box">
-                    <div class="icon"><i class="fa-solid fa-car-side"></i></div>
-                    <h5 data-ar="أسطول متنوع" data-en="Diverse Fleet">أسطول متنوع</h5>
-                    <p class="text-muted" data-ar="اختر من بين مجموعتنا الواسعة من السيارات المُعتنى بها جيدًا — من السيدان الاقتصادية الموفرة للوقود، والـ SUV العائلية الواسعة، إلى السيارات الفاخرة والمميزة. جميع المركبات يتم صيانتها بانتظام لضمان راحتك وسلامتك.">
-                        اختر من بين مجموعتنا الواسعة من السيارات المُعتنى بها جيدًا — من السيدان الاقتصادية الموفرة
-                        للوقود، والـ SUV العائلية الواسعة، إلى السيارات الفاخرة والمميزة. جميع المركبات يتم صيانتها
+                    <div class="icon">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <h5 data-ar="أسطول متنوع" data-en="Diverse Fleet">
+                        أسطول متنوع
+                    </h5>
+                    <p class="text-muted"
+                       data-ar="اختر من بين مجموعتنا الواسعة من السيارات المُعتنى بها جيدًا — من السيدان الاقتصادية الموفرة للوقود، والـ SUV العائلية الواسعة، إلى السيارات الفاخرة والمميزة. جميع المركبات يتم صيانتها بانتظام لضمان راحتك وسلامتك."
+                       data-en="Choose from our wide range of well-maintained cars — from fuel-efficient sedans and spacious family SUVs to luxury and premium vehicles. All cars are regularly serviced to ensure your comfort and safety.">
+                        اختر من بين مجموعتنا الواسعة من السيارات المُعتنى بها جيدًا — من السيدان الاقتصادية
+                        الموفرة
+                        للوقود، والـ SUV العائلية الواسعة، إلى السيارات الفاخرة والمميزة. جميع المركبات يتم
+                        صيانتها
                         بانتظام لضمان راحتك وسلامتك.
                     </p>
                 </div>
+
                 <div class="feature-box">
-                    <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <h5 data-ar="لدينا 4 فروع في أنحاء المملكة" data-en="We Have 4 Branches Across the Kingdom">لدينا 4 فروع في أنحاء المملكة</h5>
-                    <p class="text-muted" data-ar="من الرياض وجدة ومكة والمدينة والدمام إلى باقي المدن والمطارات الرئيسية، تجعل لك 'المفتاح لتأجير السيارات' استلام وتسليم السيارة أسهل ما يكون أينما كنت.">
+                    <div class="icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h5 data-ar="لدينا 4 فروع في أنحاء المملكة" data-en="We Have 4 Branches Across the Kingdom">
+                        لدينا 4 فروع في أنحاء المملكة
+                    </h5>
+                    <p class="text-muted"
+                       data-ar="من الرياض وجدة ومكة والمدينة والدمام إلى باقي المدن والمطارات الرئيسية، تجعل لك 'المفتاح لتأجير السيارات' استلام وتسليم السيارة أسهل ما يكون أينما كنت."
+                       data-en="From Riyadh, Jeddah, Mecca, Medina, and Dammam to other cities and main airports, 'Al-Miftah Car Rental' makes picking up and dropping off your car as easy as possible wherever you are.">
                         من الرياض وجدة ومكة والمدينة والدمام إلى باقي المدن والمطارات الرئيسية، تجعل لك "المفتاح
                         لتأجير السيارات" استلام وتسليم السيارة أسهل ما يكون أينما كنت.
                     </p>
                 </div>
+
                 <div class="feature-box">
-                    <div class="icon"><i class="fa-solid fa-tags"></i></div>
-                    <h5 data-ar="أسعار بدون رسوم خفية" data-en="Transparent Pricing">أسعار بدون رسوم خفية</h5>
-                    <p class="text-muted" data-ar="أسعارنا تنافسية ومعلنة بوضوح. ما تراه هو ما تدفعه — بدون مفاجآت أو تكاليف إضافية">
+                    <div class="icon">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <h5 data-ar="أسعار بدون رسوم خفية" data-en="Transparent Pricing with No Hidden Fees">
+                        أسعار بدون رسوم خفية
+                    </h5>
+                    <p class="text-muted"
+                       data-ar="أسعارنا تنافسية ومعلنة بوضوح. ما تراه هو ما تدفعه — بدون مفاجآت أو تكاليف إضافية"
+                       data-en="Our prices are competitive and clearly stated. What you see is what you pay — no surprises or extra costs.">
                         أسعارنا تنافسية ومعلنة بوضوح. ما تراه هو ما تدفعه — بدون مفاجآت أو تكاليف إضافية
                     </p>
                 </div>
+
             </div>
             <div class="col-lg-4 text-center">
                 <div class="circle-wrapper">
                     <div class="circle-bg">
                         <img src="~/images/why-choose-img.jpg" alt="">
                     </div>
-                    <div>
+                    <div class="">
                         <img class="car-img" src="~/images/car.png" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="feature-box">
-                    <div class="icon"><i class="fa-solid fa-headset"></i></div>
-                    <h5 data-ar="خدمة عملاء على مدار الساعة" data-en="24/7 Customer Support">خدمة عملاء على مدار الساعة</h5>
-                    <p class="text-muted" data-ar="تحتاج مساعدة في أي وقت وأي مكان بالسعودية؟ فريق خدمة العملاء متوفر 24/7 باللغتين لخدمتك سواء كان استفسار بسيط أو مساعدة عاجلة.">
-                        تحتاج مساعدة في أي وقت وأي مكان بالسعودية؟ فريق خدمة العملاء متوفر 24/7 باللغتين لخدمتك سواء
+                    <div class="icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h5 data-ar="خدمة عملاء على مدار الساعة" data-en="24/7 Customer Support">
+                        خدمة عملاء على مدار الساعة
+                    </h5>
+                    <p class="text-muted"
+                       data-ar="تحتاج مساعدة في أي وقت وأي مكان بالسعودية؟ فريق خدمة العملاء متوفر 24/7 باللغتين لخدمتك سواء كان استفسار بسيط أو مساعدة عاجلة."
+                       data-en="Need assistance anytime, anywhere in Saudi Arabia? Our customer support team is available 24/7 in both languages to help you with anything from simple inquiries to urgent assistance.">
+                        تحتاج مساعدة في أي وقت وأي مكان بالسعودية؟ فريق خدمة العملاء متوفر 24/7 باللغتين لخدمتك
+                        سواء
                         كان استفسار بسيط أو مساعدة عاجلة.
                     </p>
                 </div>
+
                 <div class="feature-box">
-                    <div class="icon"><i class="fa-solid fa-star"></i></div>
-                    <h5 data-ar="موثوق من آلاف العملاء" data-en="Trusted by Thousands of Customers">موثوق من آلاف العملاء</h5>
-                    <p class="text-muted" data-ar="مع خبرة تتجاوز 40 عامًا في مجال تأجير السيارات، نالت 'المفتاح لتأجير السيارات' ثقة آلاف العملاء الذين اختاروا خدماتنا لما نوفره من جودة وراحة بال.">
+                    <div class="icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h5 data-ar="موثوق من آلاف العملاء" data-en="Trusted by Thousands of Customers">
+                        موثوق من آلاف العملاء
+                    </h5>
+                    <p class="text-muted"
+                       data-ar="مع خبرة تتجاوز 40 عامًا في مجال تأجير السيارات، نالت 'المفتاح لتأجير السيارات' ثقة آلاف العملاء الذين اختاروا خدماتنا لما نوفره من جودة وراحة بال."
+                       data-en="With over 40 years of experience in car rental, 'Al-Miftah Car Rental' has earned the trust of thousands of customers who chose our services for the quality and peace of mind we provide.">
                         مع خبرة تتجاوز 40 عامًا في مجال تأجير السيارات، نالت "المفتاح لتأجير السيارات" ثقة آلاف
                         العملاء الذين اختاروا خدماتنا لما نوفره من جودة وراحة بال.
                     </p>
                 </div>
+
                 <div class="feature-box">
-                    <div class="icon"><i class="fa-solid fa-user-gear"></i></div>
-                    <h5 data-ar="حلول مخصصة لكل فرد" data-en="Tailored Solutions">حلول مخصصة لكل فرد</h5>
-                    <p class="text-muted" data-ar="سواء كانت رحلة عمل، إجازة، أو احتياج لتأجير طويل المدى داخل المملكة، نوفر لك خطط مرنة تناسب احتياجاتك.">
-                        سواء كانت رحلة عمل، إجازة، أو احتياج لتأجير طويل المدى داخل المملكة، نوفر لك خطط مرنة تناسب
+                    <div class="icon">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h5 data-ar="حلول مخصصة لكل فرد" data-en="Tailored Solutions for Everyone">
+                        حلول مخصصة لكل فرد
+                    </h5>
+                    <p class="text-muted"
+                       data-ar="سواء كانت رحلة عمل، إجازة، أو احتياج لتأجير طويل المدى داخل المملكة، نوفر لك خطط مرنة تناسب احتياجاتك."
+                       data-en="Whether it’s a business trip, vacation, or long-term rental in the Kingdom, we provide flexible plans to suit your needs.">
+                        سواء كانت رحلة عمل، إجازة، أو احتياج لتأجير طويل المدى داخل المملكة، نوفر لك خطط مرنة
+                        تناسب
                         احتياجاتك.
                     </p>
                 </div>
@@ -412,18 +593,18 @@
     </div>
 </section>
 
-<!-- 5. Offers / Fleet Slider Section (Dynamic) -->
+<!-- 5. Offers Section (Dynamic Fleet) -->
 <section class="offers-section">
     <div class="container">
         <div class="heading text-center d-flex flex-column gap-3 mb-5 justify-content-center align-items-center">
             <span data-ar="أسطولنا" data-en="Our Fleet">أسطولنا</span>
-            <h2 class="text-center text-white" data-ar="استكشف أسطولنا المثالي والواسع" data-en="Explore Our Perfect and Extensive Fleet">
+            <h2 class="text-center text-white" data-ar="استكشف أسطولنا المثالي والواسع"
+                data-en="Explore Our Perfect and Extensive Fleet">
                 استكشف أسطولنا المثالي والواسع
             </h2>
         </div>
         <div class="swiper fleetSwiper py-5">
             <div class="swiper-wrapper">
-                <!-- الدوران على السيارات القادمة من قاعدة البيانات -->
                 @if (topCars.Any())
                 {
                     @foreach (var car in topCars)
@@ -435,24 +616,28 @@
                                     <img src="@car.ImageUrl" alt="@car.Name" style="width: 100%; height: 100%; object-fit: cover;">
                                 </div>
                                 <div class="nova-content">
+
                                     <span class="nova-badge">@car.Category</span>
-                                    <h5 class="nova-title mb-5">@car.Name - @car.Year</h5>
+
+                                    <h5 class="nova-title mb-5">
+                                        @car.Name - @car.Year
+                                    </h5>
 
                                     <div class="features d-flex justify-content-between align-items-center text-center my-3">
                                         <div>
-                                            <i class="fa-solid fa-users fs-5 text-muted mb-2"></i>
+                                            <img src="~/images/icon-1.png" alt="">
                                             <p class="mt-2 text-purple">@car.Passengers</p>
                                         </div>
                                         <div>
-                                            <i class="fa-solid fa-door-open fs-5 text-muted mb-2"></i>
+                                            <img src="https://demo.awaikenthemes.com/novaride/dark/wp-content/uploads/2024/09/icon-door-1.svg" alt="">
                                             <p class="mt-2 text-purple">@car.Doors</p>
                                         </div>
                                         <div>
-                                            <i class="fa-solid fa-suitcase fs-5 text-muted mb-2"></i>
+                                            <img src="~/images/icon-2.png" alt="">
                                             <p class="mt-2 text-purple">@car.Bags</p>
                                         </div>
                                         <div>
-                                            <i class="fa-solid fa-gear fs-5 text-muted mb-2"></i>
+                                            <img src="~/images/icon-3.png" alt="">
                                             <p class="mt-2 text-purple">@car.Transmission</p>
                                         </div>
                                     </div>
@@ -460,12 +645,18 @@
                                     <div class="nova-footer">
                                         <p class="price text-center">
                                             @car.DailyPrice.ToString("0.00") ر.س / يوم
-                                            <small class="text-purple d-block" data-ar="(قبل خصم الولاء)">(قبل خصم الولاء)</small>
+                                            <small class="text-purple d-block" data-ar="(قبل خصم الولاء)" data-en="(Before Loyalty Discount)">
+                                                (قبل خصم الولاء)
+                                            </small>
                                         </p>
+
                                         <div class="text-center">
-                                            <a href="/Booking/Reserve/@car.Id" class="btn book-btn" data-ar="احجز الآن" data-en="Book Now">احجز الآن</a>
+                                            <a href="/Booking/Reserve/@car.Id" class="btn book-btn" data-ar="احجز الآن" data-en="Book Now">
+                                                احجز الآن
+                                            </a>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -480,21 +671,133 @@
             </div>
         </div>
         <div class="d-flex justify-content-center align-items-center">
-            <a asp-action="Fleet" class="btn book-btn" data-ar="تصفح جميع السيارات" data-en="Browse All Cars">تصفح جميع السيارات</a>
+            <a asp-action="Fleet" class="btn book-btn" data-ar="تصفح جميع السيارات" data-en="Browse All Cars">
+                تصفح جميع السيارات
+            </a>
         </div>
     </div>
 </section>
 
-<!-- 6. CTA Section -->
-<section class="cta py-5">
+<!-- 6. FAQ Section -->
+<section class="faq-section container-fluid py-5">
+    <div class="faq-wrapper mx-auto p-5">
+
+        <div class="row g-4 align-items-center justify-content-center mt-5">
+
+            <div class="col-lg-6 position-relative mb-5 mb-lg-0">
+                <div class="angled-panel panel-1"></div>
+                <div class="angled-panel panel-2"></div>
+                <img src="~/images/car.png" class="car-img-faq img-fluid " alt="Car">
+            </div>
+
+            <div class="col-lg-6">
+                <p class="text-purple fw-bold small mb-2" data-ar="✱ الأسئلة الشائعة"
+                   data-en="✱ Frequently Asked Questions">
+                    ✱ الأسئلة الشائعة
+                </p>
+
+                <h2 class="title" data-ar="كل ما تحتاج لمعرفته حول خدماتنا"
+                    data-en="Everything You Need to Know About Our Services">
+                    كل ما تحتاج لمعرفته
+                    حول خدماتنا
+                </h2>
+
+                <div class="accordion custom-faq" id="faqAccordion">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button d-flex align-items-center justify-content-between"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+
+                                <span data-ar="ما أنواع السيارات التي تقدمونها؟"
+                                      data-en="What types of cars do you offer?">
+                                    ما أنواع السيارات التي تقدمونها؟
+                                </span>
+
+                                <span class="faq-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted fw-semibold"
+                                 data-ar="نوفر في المفتاح لتأجير السيارات مجموعة متنوعة تناسب الاحتياجات اليومية والرحلات العائلية والسيارات الفاخرة."
+                                 data-en="Almaha Car Rental offers a wide variety of vehicles suitable for daily needs, family trips, and luxury cars.">
+                                نوفر في المفتاح لتأجير السيارات مجموعة متنوعة تناسب الاحتياجات اليومية والرحلات
+                                العائلية والسيارات الفاخرة.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed d-flex align-items-center justify-content-between"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+
+                                <span data-ar="ما هي المستندات المطلوبة لاستئجار سيارة؟"
+                                      data-en="What documents are required to rent a car?">
+                                    ما هي المستندات المطلوبة لاستئجار سيارة؟
+                                </span>
+
+                                <span class="faq-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted fw-semibold"
+                                 data-ar="رخصة قيادة سارية، هوية وطنية أو إقامة، وبطاقة دفع."
+                                 data-en="A valid driving license, national ID or residence permit, and a payment card.">
+                                رخصة قيادة سارية، هوية وطنية أو إقامة، وبطاقة دفع.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed d-flex align-items-center justify-content-between"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+
+                                <span data-ar="هل تقبلون العملاء الدوليين؟"
+                                      data-en="Do you accept international customers?">
+                                    هل تقبلون العملاء الدوليين؟
+                                </span>
+
+                                <span class="faq-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted fw-semibold"
+                                 data-ar="نعم، نرحب بالعملاء الدوليين مع توفر المستندات المطلوبة."
+                                 data-en="Yes, we welcome international customers with the required documents.">
+                                نعم، نرحب بالعملاء الدوليين مع توفر المستندات المطلوبة.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. CTA Section -->
+<section class="cta">
     <div class="container">
-        <div class="row g-4 justify-content-center p-5 rounded-4 shadow" style="background-image: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url('/images/break-bg.jpg'); background-size: cover; background-position: center;">
+        <div class="row g-4 justify-content-center ">
             <div class="col-lg-6">
                 <div class="content d-flex flex-column gap-2 justify-content-center align-items-center">
-                    <h2 class="text-white" data-ar="هل أنت مستعد لرحلة خالية من التوتر؟" data-en="Are you ready for a stress-free trip?">
+                    <h2 data-ar="هل أنت مستعد لرحلة خالية من التوتر؟"
+                        data-en="Are you ready for a stress-free trip?">
                         هل أنت مستعد لرحلة خالية من التوتر؟
                     </h2>
-                    <p class="text-white" data-ar="احجز خدمة السائق الفاخرة الخاصة بك اليوم." data-en="Book your private luxury driver service today.">
+                    <p data-ar="احجز خدمة السائق الفاخرة الخاصة بك اليوم."
+                       data-en="Book your private luxury driver service today.">
                         احجز خدمة السائق الفاخرة الخاصة بك اليوم.
                     </p>
                 </div>

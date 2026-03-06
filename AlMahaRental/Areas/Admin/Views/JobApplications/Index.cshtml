@@ -1,0 +1,99 @@
+﻿@model IEnumerable<AlMahaRental.Models.JobApplication>
+@{
+    ViewData["Title"] = "طلبات التوظيف";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold" style="color: var(--text-main);">طلبات التوظيف الواردة</h2>
+    <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">إجمالي الطلبات: @Model.Count()</span>
+</div>
+
+<div class="premium-card p-0 overflow-hidden">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col" class="ps-4">المتقدم</th>
+                    <th scope="col">القسم / المدينة</th>
+                    <th scope="col">بيانات الاتصال</th>
+                    <th scope="col">الخبرة واللغات</th>
+                    <th scope="col">تاريخ الطلب</th>
+                    <th scope="col" class="text-center">الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var app in Model)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center me-3 text-white fw-bold"
+                                         style="width: 45px; height: 45px; background: var(--accent-gradient);">
+                                        <i class="fa-solid fa-user-tie"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0 fw-bold text-dark">@app.FullName</h6>
+                                        <small class="text-muted">هوية: @app.IdNumber</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-info text-dark mb-1">@app.Department</span><br />
+                                <small class="text-muted"><i class="fa-solid fa-location-dot me-1"></i> @app.City</small>
+                            </td>
+                            <td>
+                                <small class="d-block text-dark"><i class="fa-solid fa-phone me-1 text-muted"></i> @app.PhoneNumber</small>
+                                <small class="d-block text-muted"><i class="fa-solid fa-envelope me-1"></i> @app.Email</small>
+                            </td>
+                            <td>
+                                <div>
+                                    @if (app.HasExperience)
+                                    {
+                                        <span class="badge bg-success rounded-pill mb-1">يمتلك خبرة</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary rounded-pill mb-1">لا يمتلك خبرة</span>
+                                    }
+                                </div>
+                                <small class="text-muted" title="@app.Languages">
+                                    <i class="fa-solid fa-language me-1"></i> @(app.Languages.Length > 15 ? app.Languages.Substring(0, 15) + "..." : app.Languages)
+                                </small>
+                            </td>
+                            <td class="text-muted fw-semibold">
+                                @app.CreatedAt.ToString("yyyy-MM-dd")
+                            </td>
+                            <td class="text-center">
+                                <!-- زر تحميل السيرة الذاتية -->
+                                @if (!string.IsNullOrEmpty(app.ResumeUrl))
+                                {
+                                    <a href="@app.ResumeUrl" target="_blank" class="btn btn-sm btn-outline-primary rounded-circle" title="عرض السيرة الذاتية">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </a>
+                                }
+
+                                <form asp-action="Delete" asp-route-id="@app.Id" method="post" class="d-inline" onsubmit="return confirm('هل أنت متأكد من رغبتك في حذف هذا الطلب؟');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-circle" title="حذف">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">
+                            <i class="fa-solid fa-folder-open fs-1 mb-3"></i>
+                            <h5>لا توجد طلبات توظيف مقدمة حالياً</h5>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

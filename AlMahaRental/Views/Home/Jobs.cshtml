@@ -1,56 +1,43 @@
-﻿@{
+﻿@model AlMahaRental.Models.JobApplication
+@{
     ViewData["Title"] = "الوظائف";
 }
 
-<section class="services-header">
-    <div class="container pt-5">
-        <h2 data-ar="الوظائف" data-en="Careers">الوظائف</h2>
-
-        <div class="fw-semibold">
-            <a href="/Home/Index" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
-            <span>/</span>
-            <span data-ar="الوظائف" data-en="Careers">الوظائف</span>
+<section class="services-header" style="min-height: 40vh; background-position: center; background-image: linear-gradient(rgba(180,42,145,0.8), rgba(0,0,0,0.7)), url('/images/service-bg.jpg');">
+    <div class="container pt-5 text-center">
+        <h2 class="text-white fw-bold mb-3" data-ar="الوظائف" data-en="Careers">الوظائف</h2>
+        <div class="fw-semibold text-white">
+            <a asp-controller="Home" asp-action="Index" class="text-white text-decoration-none" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+            <span class="mx-2">/</span>
+            <span class="text-white" data-ar="الوظائف" data-en="Careers">الوظائف</span>
         </div>
     </div>
 </section>
 
 <section class="jobs py-5">
     <div class="container">
-        <div class="row g-4 align-items-center">
+        <div class="row g-5 align-items-center">
             <div class="col-lg-6">
-                <div class="content">
-                    <h2 data-ar="وظائف شركة المها لتأجير السيارات | فرص عمل في السعودية"
-                        data-en="Almaha Car Rental Careers | Job Opportunities in Saudi Arabia">
-                        وظائف شركة المها لتأجير السيارات | فرص عمل في السعودية
+                <div class="content pe-lg-4">
+                    <h2 class="fw-bold mb-4" style="color: var(--accent-color);" data-ar="وظائف شركة المها لتأجير السيارات | فرص عمل في السعودية" data-en="Almaha Car Rental Careers | Job Opportunities in Saudi Arabia">
+                        وظائف شركة المها لتأجير السيارات <br> فرص عمل في السعودية
                     </h2>
-
-                    <p data-ar="هل تبحث عن مسار وظيفي متميز في قطاع السيارات؟ انضم الآن إلى فريق عمل المها لتأجير السيارات، إحدى الشركات الرائدة في المملكة العربية السعودية، والتي تمتلك خبرة واسعة وسجلًا حافلًا بالنجاحات في تقديم خدمات تأجير السيارات بأعلى معايير الجودة والاحترافية. نحن نؤمن بأن موظفينا هم أساس نجاحنا، ولذلك نحرص على استقطاب الكفاءات الطموحة التي تسعى للنمو والتطور المستمر."
-                       data-en="Are you looking for a distinguished career path in the automotive sector? Join the Almaha Car Rental team, one of the leading companies in Saudi Arabia with extensive experience and a proven track record in delivering car rental services at the highest standards of quality and professionalism. We believe our employees are the key to our success, which is why we focus on attracting ambitious talents seeking continuous growth and development.">
-                        هل تبحث عن مسار وظيفي متميز في قطاع السيارات؟ انضم الآن إلى فريق عمل المها لتأجير
-                        السيارات، إحدى الشركات الرائدة في المملكة العربية السعودية، والتي تمتلك خبرة واسعة
-                        وسجلًا حافلًا بالنجاحات في تقديم خدمات تأجير السيارات بأعلى معايير الجودة والاحترافية.
-                        نحن نؤمن بأن موظفينا هم أساس نجاحنا، ولذلك نحرص على استقطاب الكفاءات الطموحة التي تسعى
-                        للنمو والتطور المستمر.
+                    <p class="text-muted fs-5 lh-lg mb-4" data-ar="هل تبحث عن مسار وظيفي متميز في قطاع السيارات؟ انضم الآن إلى فريق عمل المها لتأجير السيارات...">
+                        هل تبحث عن مسار وظيفي متميز في قطاع السيارات؟ انضم الآن إلى فريق عمل المها لتأجير السيارات، إحدى الشركات الرائدة في المملكة العربية السعودية، والتي تمتلك خبرة واسعة وسجلًا حافلًا بالنجاحات في تقديم خدمات تأجير السيارات بأعلى معايير الجودة والاحترافية. نحن نؤمن بأن موظفينا هم أساس نجاحنا، ولذلك نحرص على استقطاب الكفاءات الطموحة التي تسعى للنمو والتطور المستمر.
                     </p>
-
-                    <p data-ar="إذا كنت تتطلع إلى فرصة عمل في مدن الرياض، جدة، أو الدمام، وترغب في أن تكون جزءًا من فريق يسعى دائمًا للتميز والابتكار، فإن المها لتأجير السيارات هي المكان المناسب لك. لا تفوت الفرصة — قدم طلبك الآن وابدأ رحلة مهنية ناجحة وكن جزءًا من عائلة المها، حيث نصنع النجاح معًا."
-                       data-en="If you are looking for a job opportunity in Riyadh, Jeddah, or Dammam and want to be part of a team that always strives for excellence and innovation, Almaha Car Rental is the right place for you. Don’t miss the chance — apply now and start a successful career journey while becoming part of the Almaha family, where we create success together.">
-                        إذا كنت تتطلع إلى فرصة عمل في مدن الرياض، جدة، أو الدمام، وترغب في أن تكون جزءًا من فريق
-                        يسعى دائمًا للتميز والابتكار، فإن المها لتأجير السيارات هي المكان المناسب لك. لا تفوت
-                        الفرصة — قدم طلبك الآن وابدأ رحلة مهنية ناجحة وكن جزءًا من عائلة المها، حيث نصنع النجاح
-                        معًا.
+                    <p class="text-muted fs-5 lh-lg" data-ar="إذا كنت تتطلع إلى فرصة عمل في مدن الرياض، جدة، أو الدمام...">
+                        إذا كنت تتطلع إلى فرصة عمل في مدن الرياض، جدة، أو الدمام، وترغب في أن تكون جزءًا من فريق يسعى دائمًا للتميز والابتكار، فإن المها لتأجير السيارات هي المكان المناسب لك. لا تفوت الفرصة — قدم طلبك الآن وابدأ رحلة مهنية ناجحة وكن جزءًا من عائلة المها، حيث نصنع النجاح معًا.
                     </p>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="jobs-images d-flex justify-content-center gap-3">
-
                     <div class="small-imgs d-flex flex-column gap-3">
-                        <img src="~/images/jobs-2.jpg" alt="" class="img-fluid">
-                        <img src="~/images/jobs-3.webp" alt="" class="img-fluid">
+                        <img src="~/images/jobs-2.jpg" alt="Jobs" class="img-fluid rounded-4 shadow-sm" style="object-fit: cover; height: 210px;">
+                        <img src="~/images/jobs-3.webp" alt="Jobs" class="img-fluid rounded-4 shadow-sm" style="object-fit: cover; height: 210px;">
                     </div>
-                    <div class="big-img">
-                        <img src="~/images/jobs-1.jpg" alt="" class="img-fluid">
+                    <div class="big-img w-50">
+                        <img src="~/images/jobs-1.jpg" alt="Jobs" class="img-fluid rounded-4 shadow-sm w-100 h-100" style="object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -124,149 +111,160 @@
 
 <section class="career-form-section py-5 mb-5">
     <div class="container">
-        <div class="career-form">
-            <form>
+        <div class="career-form bg-white p-5 rounded-4 shadow-lg border border-light">
+            <h3 class="fw-bold mb-4 text-center" style="color: var(--accent-color);">قدم طلب التوظيف الآن</h3>
+            <hr class="mb-4 opacity-25">
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success text-center fw-bold fs-5 mb-4">
+                    <i class="fa-solid fa-circle-check me-2"></i> @TempData["SuccessMessage"]
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger text-center fw-bold mb-4">
+                    <i class="fa-solid fa-triangle-exclamation me-2"></i> @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <form asp-action="Jobs" method="post" enctype="multipart/form-data">
                 <div class="row g-4">
                     <div class="col-md-4">
-                        <label class="form-label" data-ar="الاسم الكامل" data-en="Full Name">
-                            الاسم الكامل
-                            <span>*</span>
-                        </label>
-                        <input type="text" class="form-control" placeholder="ادخل الاسم" data-ar="ادخل الاسم"
-                               data-en="Enter your name">
+                        <label asp-for="FullName" class="form-label fw-bold" data-ar="الاسم الكامل">الاسم الكامل <span class="text-danger">*</span></label>
+                        <input asp-for="FullName" type="text" class="form-control bg-light border-0 py-2" placeholder="ادخل الاسم" required>
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label" data-ar="تاريخ الميلاد" data-en="Date of Birth">
-                            تاريخ الميلاد
-                            <span>*</span>
-                        </label>
-                        <input type="date" class="form-control">
+                        <label asp-for="DateOfBirth" class="form-label fw-bold" data-ar="تاريخ الميلاد">تاريخ الميلاد <span class="text-danger">*</span></label>
+                        <input asp-for="DateOfBirth" type="date" class="form-control bg-light border-0 py-2" required>
+                        <span asp-validation-for="DateOfBirth" class="text-danger small"></span>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label" data-ar="الجنسية" data-en="Nationality">
-                            الجنسية
-                            <span>*</span>
-                        </label>
-                        <select class="form-select">
-                            <option selected disabled data-ar="اختار" data-en="Select">اختار</option>
-                            <option data-ar="سعودي" data-en="Saudi">سعودي</option>
-                            <option data-ar="مقيم" data-en="Resident">مقيم</option>
+                        <label asp-for="Nationality" class="form-label fw-bold" data-ar="الجنسية">الجنسية <span class="text-danger">*</span></label>
+                        <select asp-for="Nationality" class="form-select bg-light border-0 py-2" required>
+                            <option value="" selected disabled data-ar="اختار">اختار</option>
+                            <option value="سعودي" data-ar="سعودي">سعودي</option>
+                            <option value="مقيم" data-ar="مقيم">مقيم</option>
                         </select>
+                        <span asp-validation-for="Nationality" class="text-danger small"></span>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label" data-ar="البريد الإلكتروني" data-en="Email">
-                            البريد الإلكتروني
-                            <span>*</span>
-                        </label>
-                        <input type="email" class="form-control" placeholder="ادخل البريد الالكتروني"
-                               data-ar="ادخل البريد الالكتروني" data-en="Enter your email">
+                        <label asp-for="Email" class="form-label fw-bold" data-ar="البريد الإلكتروني">البريد الإلكتروني <span class="text-danger">*</span></label>
+                        <input asp-for="Email" type="email" class="form-control bg-light border-0 py-2" placeholder="ادخل البريد الالكتروني" required>
+                        <span asp-validation-for="Email" class="text-danger small"></span>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label" data-ar="رقم الهوية" data-en="ID Number">
-                            رقم الهوية
-                            <span>*</span>
-                        </label>
-                        <input type="text" class="form-control">
+                        <label asp-for="IdNumber" class="form-label fw-bold" data-ar="رقم الهوية">رقم الهوية <span class="text-danger">*</span></label>
+                        <input asp-for="IdNumber" type="text" class="form-control bg-light border-0 py-2" required>
+                        <span asp-validation-for="IdNumber" class="text-danger small"></span>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label" data-ar="رقم الجوال" data-en="Phone Number">
-                            رقم الجوال
-                            <span>*</span>
-                        </label>
+                        <label asp-for="PhoneNumber" class="form-label fw-bold" data-ar="رقم الجوال">رقم الجوال <span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <input type="tel" class="form-control phone-input" placeholder="5xxxxxxxx" required
-                                   data-ar="5xxxxxxxx" data-en="5xxxxxxxx">
-                            <select class="form-select country-code" style="max-width: 100px;">
-                                <option value="+966" selected data-ar="+966" data-en="+966">
-                                    +966
-                                </option>
-                                <option value="+971" data-ar="+971" data-en="+971">+971</option>
-                                <option value="+20" data-ar="+20" data-en="+20">+20</option>
-                                <option value="+965" data-ar="+965" data-en="+965">+965</option>
-                                <option value="+973" data-ar="+973" data-en="+973">+973</option>
+                            <input asp-for="PhoneNumber" type="tel" class="form-control phone-input bg-light border-0 py-2" placeholder="5xxxxxxxx" required>
+                            <select class="form-select country-code bg-light border-0 py-2" style="max-width: 100px;">
+                                <option value="+966" selected>+966</option>
                             </select>
                         </div>
+                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label" data-ar="القسم" data-en="Department">
-                            القسم
-                            <span>*</span>
-                        </label>
-                        <select class="form-select">
-                            <option selected disabled data-ar="اختار" data-en="Select">اختار</option>
-                            <option data-ar="المبيعات" data-en="Sales">المبيعات</option>
-                            <option data-ar="خدمة العملاء" data-en="Customer Service">خدمة العملاء</option>
-                            <option data-ar="الإدارة" data-en="Management">الإدارة</option>
+                        <label asp-for="Department" class="form-label fw-bold" data-ar="القسم">القسم المفضل <span class="text-danger">*</span></label>
+                        <select asp-for="Department" class="form-select bg-light border-0 py-2" required>
+                            <option value="" selected disabled data-ar="اختار">اختار</option>
+                            <option value="المبيعات" data-ar="المبيعات">المبيعات</option>
+                            <option value="خدمة العملاء" data-ar="خدمة العملاء">خدمة العملاء</option>
+                            <option value="الإدارة" data-ar="الإدارة">الإدارة</option>
                         </select>
+                        <span asp-validation-for="Department" class="text-danger small"></span>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label" data-ar="المدينة" data-en="City">
-                            المدينة
-                            <span>*</span>
-                        </label>
-                        <select class="form-select">
-                            <option selected disabled data-ar="اختار" data-en="Select">اختار</option>
-                            <option data-ar="الرياض" data-en="Riyadh">الرياض</option>
-                            <option data-ar="جدة" data-en="Jeddah">جدة</option>
-                            <option data-ar="الدمام" data-en="Dammam">الدمام</option>
+                        <label asp-for="City" class="form-label fw-bold" data-ar="المدينة">المدينة <span class="text-danger">*</span></label>
+                        <select asp-for="City" class="form-select bg-light border-0 py-2" required>
+                            <option value="" selected disabled data-ar="اختار">اختار</option>
+                            <option value="الرياض" data-ar="الرياض">الرياض</option>
+                            <option value="جدة" data-ar="جدة">جدة</option>
+                            <option value="الدمام" data-ar="الدمام">الدمام</option>
                         </select>
+                        <span asp-validation-for="City" class="text-danger small"></span>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label" data-ar="اللغات" data-en="Languages">
-                            اللغات
-                            <span>*</span>
-                        </label>
-                        <input type="text" class="form-control">
+                        <label asp-for="Languages" class="form-label fw-bold" data-ar="اللغات">اللغات المتقنة <span class="text-danger">*</span></label>
+                        <input asp-for="Languages" type="text" class="form-control bg-light border-0 py-2" placeholder="عربي، إنجليزي..." required>
+                        <span asp-validation-for="Languages" class="text-danger small"></span>
                     </div>
                     <div class="col-12 mt-4">
-                        <label class="form-label d-block" data-ar="هل لديك خبرة؟"
-                               data-en="Do you have experience?">هل لديك خبرة؟</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="experience">
-                            <label class="form-check-label" data-ar="نعم" data-en="Yes">نعم</label>
+                        <label class="form-label fw-bold mb-3 d-block" data-ar="هل لديك خبرة سابقة في تأجير السيارات؟">هل لديك خبرة سابقة في نفس المجال؟</label>
+                        <div class="form-check form-check-inline me-4">
+                            <input class="form-check-input" type="radio" asp-for="HasExperience" id="expYes" value="true" style="transform: scale(1.2);">
+                            <label class="form-check-label ms-2 fw-bold" for="expYes" data-ar="نعم">نعم</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="experience">
-                            <label class="form-check-label" data-ar="لا" data-en="No">لا</label>
+                            <input class="form-check-input" type="radio" asp-for="HasExperience" id="expNo" value="false" style="transform: scale(1.2);" checked>
+                            <label class="form-check-label ms-2 fw-bold" for="expNo" data-ar="لا">لا</label>
                         </div>
                     </div>
-                    <div class="col-12 mt-4">
-                        <label class="form-label" data-ar="التعليم / الخبرات"
-                               data-en="Education / Experience">التعليم / الخبرات <span>*</span></label>
-                        <textarea class="form-control" placeholder="الرجاء تعبئة البيانات"
-                                  data-ar="الرجاء تعبئة البيانات" data-en="Please fill in the information"></textarea>
+                    <div class="col-12 mt-4" id="experienceSection">
+                        <label asp-for="ExperienceDetails" class="form-label fw-bold" data-ar="التعليم / الخبرات">نبذة عن التعليم والخبرات <span class="text-danger">*</span></label>
+                        <textarea asp-for="ExperienceDetails" class="form-control bg-light border-0 py-2" rows="4" placeholder="الرجاء كتابة نبذة مختصرة عن مؤهلاتك وخبراتك..." required></textarea>
+                        <span asp-validation-for="ExperienceDetails" class="text-danger small"></span>
                     </div>
-                    <div class="col-md-6 mt-4">
+                    <div class="col-md-6">
                         <label class="form-label" data-ar="السيرة الذاتية" data-en="Resume">
                             السيرة الذاتية
                             <span>*</span>
                         </label>
                         <div class="upload-box">
-                            <button type="button" class="btn btn-upload btn-sm" data-ar="رفع الملفات"
-                                    data-en="Upload Files">
-                                رفع الملفات
-                            </button>
-                            <small class="text-muted" data-ar="(PDF فقط - أقصى 1 ميجا)"
+                            <input type="file" name="resumeFile" class="form-control border-0 bg-transparent p-0 mt-4" accept=".pdf,.doc,.docx" required>
+                            <small style="text-wrap:nowrap" class="text-muted" data-ar="(PDF فقط - أقصى 1 ميجا)"
                                    data-en="(PDF only - max 1MB)">(PDF فقط - أقصى 1 ميجا)</small>
                         </div>
                     </div>
                     <div class="col-md-6 mt-4">
-                        <label class="form-label" data-ar="رابط LinkedIn" data-en="LinkedIn URL">
-                            رابط
-                            LinkedIn
-                        </label>
-                        <input type="url" class="form-control" placeholder="الرجاء تعبئة البيانات"
-                               data-ar="الرجاء تعبئة البيانات" data-en="Please fill in the information">
+                        <label asp-for="LinkedInUrl" class="form-label fw-bold" data-ar="رابط LinkedIn">رابط حساب LinkedIn (اختياري)</label>
+                        <input asp-for="LinkedInUrl" type="url" class="form-control bg-light border-0 py-3" placeholder="https://linkedin.com/in/username">
                     </div>
                     <div class="col-12 text-center mt-5">
-                        <button type="submit" class="btn btn-submit" data-ar="إرسال الطلب"
-                                data-en="Submit Application">
-                            إرسال الطلب
+                        <button type="submit" class="btn text-white fw-bold py-3 px-5 rounded-pill shadow" style="background: #88196e; width: 300px; font-size: 1.1rem;" data-ar="إرسال الطلب">
+                            إرسال الطلب <i class="fa-solid fa-paper-plane ms-2"></i>
                         </button>
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
 </section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // سكربت بسيط لإخفاء/إظهار حقل تفاصيل الخبرة إذا اختار "لا" لتجنب إجبار المستخدم على الكتابة
+        document.addEventListener('DOMContentLoaded', function() {
+            var expYes = document.getElementById('expYes');
+            var expNo = document.getElementById('expNo');
+            var expSection = document.getElementById('experienceSection');
+            var expTextArea = expSection.querySelector('textarea');
+
+            function toggleExperience() {
+                if(expNo.checked) {
+                    expSection.style.display = 'none';
+                    expTextArea.removeAttribute('required');
+                    expTextArea.value = 'لا توجد خبرة سابقة';
+                } else {
+                    expSection.style.display = 'block';
+                    expTextArea.setAttribute('required', 'required');
+                    if(expTextArea.value === 'لا توجد خبرة سابقة') {
+                        expTextArea.value = '';
+                    }
+                }
+            }
+
+            expYes.addEventListener('change', toggleExperience);
+            expNo.addEventListener('change', toggleExperience);
+            toggleExperience(); // استدعاء أولي عند تحميل الصفحة
+        });
+    </script>
+}

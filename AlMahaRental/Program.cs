@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. إعداد الاتصال بقاعدة البيانات (تأكد من تعديل الـ ConnectionString في appsettings.json)
+// 1. إعداد الاتصال بقاعدة البيانات
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
@@ -14,7 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // 2. إعداد الـ Identity وتفعيل الـ Roles (Admin, User)
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => {
-    options.SignIn.RequireConfirmedAccount = false; // للتسهيل حاليا
+    options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireDigit = false;
     options.Password.RequireLowercase = false;
     options.Password.RequireNonAlphanumeric = false;
@@ -29,6 +29,23 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        await DbSeeder.SeedRolesAndAdminAsync(services);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "حدث خطأ أثناء زراعة البيانات الأساسية وحساب المدير.");
+    }
+}
+
+
+
 // إعداد الـ Pipeline
 if (!app.Environment.IsDevelopment())
 {
@@ -37,14 +54,14 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); // للسماح باستخدام الـ CSS, JS, Images
+app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthentication(); // تفعيل تسجيل الدخول
 app.UseAuthorization();  // تفعيل الصلاحيات (الـ Roles)
 
-// إعداد الـ Routes الافتراضية ودعم الـ Areas لوحة التحكم (Admin Panel)
+// إعداد الـ Routes الافتراضية ودعم لوحة التحكم (Admin Area)
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

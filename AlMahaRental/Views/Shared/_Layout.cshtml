@@ -46,10 +46,13 @@
                     </a>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a class="btn-login text-decoration-none" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
-                            <i class="fa-solid fa-user-circle me-1" style="font-size: 20px;"></i>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="btn-login text-decoration-none" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                                <i class="fa-solid fa-user-circle me-1" style="font-size: 20px;"></i>
                             <span data-ar="حسابي" data-en="My Account">حسابي</span>
                         </a>
+                        }
                     }
                     else
                     {

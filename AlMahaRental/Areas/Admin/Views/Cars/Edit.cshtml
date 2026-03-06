@@ -15,7 +15,6 @@
     <form asp-action="Edit" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
         <input type="hidden" asp-for="Id" />
-        <!-- نحتفظ بمسار الصورة القديمة في حال لم يتم رفع صورة جديدة -->
         <input type="hidden" asp-for="ImageUrl" />
 
         <div class="row g-4">
@@ -87,21 +86,28 @@
             <div class="col-12"><hr class="text-muted opacity-25"></div>
 
             <!-- الصورة والحالة -->
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label fw-bold">تغيير صورة السيارة</label>
                 <div class="d-flex align-items-center gap-3">
                     @if (!string.IsNullOrEmpty(Model.ImageUrl))
                     {
                         <img src="@Model.ImageUrl" alt="Current Image" class="rounded" style="width: 100px; height: 60px; object-fit: cover; border: 1px solid #ddd;" />
                     }
-                    <input type="file" name="imageFile" class="form-control form-control-lg bg-light border-0" accept="image/*" />
+                    <input type="file" name="imageFile" class="form-control bg-light border-0" accept="image/*" />
                 </div>
-                <small class="text-muted mt-1 d-block">اترك الحقل فارغاً إذا كنت لا تريد تغيير الصورة الحالية.</small>
             </div>
-            <div class="col-md-6 d-flex align-items-center">
+            <div class="col-md-4 d-flex align-items-center">
                 <div class="form-check form-switch ms-3 mt-4">
                     <input class="form-check-input form-check-input-lg" style="transform: scale(1.5); margin-left: 15px;" type="checkbox" asp-for="IsAvailable">
-                    <label class="form-check-label fw-bold fs-5" asp-for="IsAvailable">السيارة متاحة للحجز؟</label>
+                    <label class="form-check-label fw-bold fs-5" asp-for="IsAvailable">متاحة للحجز؟</label>
+                </div>
+            </div>
+
+            <!-- زر تفعيل العروض الخاصة -->
+            <div class="col-md-4 d-flex align-items-center border-start">
+                <div class="form-check form-switch ms-3 mt-4">
+                    <input class="form-check-input form-check-input-lg" style="transform: scale(1.5); margin-left: 15px;" type="checkbox" asp-for="IsSpecialOffer">
+                    <label class="form-check-label fw-bold fs-5 text-warning" asp-for="IsSpecialOffer">ضمن العروض الخاصة؟</label>
                 </div>
             </div>
 

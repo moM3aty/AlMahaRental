@@ -18,7 +18,11 @@ namespace AlMahaRental.Models
         [MaxLength(20)]
         public string IdNumber { get; set; } = string.Empty; // رقم الهوية
 
-        // يمكننا إضافة حقول أخرى مثل تاريخ الميلاد أو الجنسية لاحقاً إذا لزم الأمر
+        public DateTime? DateOfBirth { get; set; } // تاريخ الميلاد
+
+        [MaxLength(50)]
+        public string Nationality { get; set; } = string.Empty; // الجنسية
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

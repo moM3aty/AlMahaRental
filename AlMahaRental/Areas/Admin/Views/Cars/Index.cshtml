@@ -1,85 +1,97 @@
 ﻿@model IEnumerable<AlMahaRental.Models.Car>
 @{
     ViewData["Title"] = "إدارة السيارات";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold" style="color: var(--text-main);">السيارات المتاحة في الأسطول</h2>
-    <a asp-action="Create" class="btn btn-primary" style="background: var(--accent-gradient); border: none; border-radius: 10px; padding: 10px 20px;">
-        <i class="fa-solid fa-plus me-2"></i> إضافة سيارة جديدة
+<div class="d-flex justify-content-between align-items-center mb-5">
+    <h2 class="page-title fs-3">الأسطول والسيارات</h2>
+    <a asp-action="Create" class="btn btn-lg text-white rounded-pill px-4 shadow" style="background: var(--accent-gradient);">
+        <i class="fa-solid fa-plus me-2"></i> سيارة جديدة
     </a>
 </div>
 
-<div class="premium-card p-0 overflow-hidden">
-    <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0">
-            <thead class="table-light">
-                <tr>
-                    <th scope="col" class="ps-4">السيارة</th>
-                    <th scope="col">النوع / الفئة</th>
-                    <th scope="col">السعر اليومي</th>
-                    <th scope="col">السعر الشهري</th>
-                    <th scope="col">الحالة</th>
-                    <th scope="col" class="text-center">الإجراءات</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null && Model.Any())
-                {
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="ps-4">
-                                <div class="d-flex align-items-center">
-                                    <img src="@item.ImageUrl" alt="@item.Name" class="rounded-3 me-3" style="width: 80px; height: 50px; object-fit: cover; border: 1px solid #eee;" />
-                                    <div>
-                                        <h6 class="mb-0 fw-bold">@item.Name</h6>
-                                        <small class="text-muted">موديل @item.Year</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="badge" style="background-color: rgba(180, 42, 145, 0.1); color: var(--accent-color);">
-                                    @item.Category
-                                </span>
-                            </td>
-                            <td class="fw-bold text-success">@item.DailyPrice.ToString("0.00") ر.س</td>
-                            <td class="fw-bold text-info">@item.MonthlyPrice.ToString("0.00") ر.س</td>
-                            <td>
-                                @if (item.IsAvailable)
-                                {
-                                    <span class="badge bg-success rounded-pill px-3 py-2"><i class="fa-solid fa-check me-1"></i> متاح</span>
-                                }
-                                else
-                                {
-                                    <span class="badge bg-danger rounded-pill px-3 py-2"><i class="fa-solid fa-xmark me-1"></i> غير متاح</span>
-                                }
-                            </td>
-                            <td class="text-center">
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary rounded-circle" title="تعديل">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('هل أنت متأكد من رغبتك في حذف هذه السيارة؟');">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-circle" title="حذف">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                }
-                else
+<div class="table-responsive pb-4">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>السيارة والموديل</th>
+                <th>الفئة</th>
+                <th>الأسعار (يومي/شهري)</th>
+                <th>حالة العروض</th>
+                <th>الحالة</th>
+                <th class="text-center">الإجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
                 {
                     <tr>
-                        <td colspan="6" class="text-center py-5 text-muted">
-                            <i class="fa-solid fa-car-side fs-1 mb-3"></i>
-                            <h5>لا توجد سيارات مضافة حالياً</h5>
-                            <p>قم بإضافة سيارتك الأولى الآن من خلال الزر أعلاه.</p>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="@item.ImageUrl" alt="@item.Name" class="rounded-3 me-3 shadow-sm" style="width: 90px; height: 60px; object-fit: cover; border: 2px solid #f1f1f1;" />
+                                <div>
+                                    <h6 class="mb-1 fw-bold text-dark fs-5">@item.Name</h6>
+                                    <span class="badge bg-light text-dark border"><i class="fa-regular fa-calendar me-1"></i> @item.Year</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge px-3 py-2 rounded-pill" style="background-color: var(--primary-light); color: var(--primary-color);">
+                                @item.Category
+                            </span>
+                        </td>
+                        <td>
+                            <div class="fw-bold text-success fs-6 mb-1">@item.DailyPrice.ToString("0") ر.س <small class="text-muted">/يوم</small></div>
+                            <div class="fw-bold text-info fs-6">@item.MonthlyPrice.ToString("0") ر.س <small class="text-muted">/شهر</small></div>
+                        </td>
+                        <td>
+                            @if (item.IsSpecialOffer)
+                            {
+                                <span class="status-badge bg-warning text-dark"><i class="fa-solid fa-star"></i> عرض خاص</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted fw-bold">-</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.IsAvailable)
+                            {
+                                <span class="status-badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">
+                                    <i class="fa-solid fa-check-circle"></i> متاح
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="status-badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25">
+                                    <i class="fa-solid fa-times-circle"></i> محجوز
+                                </span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-light text-primary shadow-sm rounded-circle me-2" style="width: 40px; height: 40px; line-height: 28px;" title="تعديل">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذه السيارة بشكل نهائي؟');">
+                                <button type="submit" class="btn btn-light text-danger shadow-sm rounded-circle" style="width: 40px; height: 40px; line-height: 28px;" title="حذف">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 }
-            </tbody>
-        </table>
-    </div>
+            }
+            else
+            {
+                <tr style="background: transparent !important; box-shadow: none !important;">
+                    <td colspan="6" class="text-center py-5 text-muted">
+                        <i class="fa-solid fa-car-side fs-1 mb-3 opacity-50"></i>
+                        <h4>لا توجد سيارات مضافة حالياً</h4>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

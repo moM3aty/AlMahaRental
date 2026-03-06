@@ -247,3 +247,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   switchLanguage(currentLang);
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const homeForm = document.querySelector('.booking-form');
+    if (homeForm) {
+        homeForm.addEventListener('submit', function (e) {
+            // حفظ المدخلات من الرئيسية قبل التحويل لصفحة الأسطول
+            const pickupLoc = document.getElementById('pickupLocation')?.value || '';
+            const dropoffLoc = document.getElementById('dropoffLocation')?.value || '';
+            const pickupDate = document.getElementById('pickup-date')?.value || '';
+            const returnDate = document.getElementById('return-date')?.value || '';
+
+            localStorage.setItem('almaha_pickupLoc', pickupLoc);
+            localStorage.setItem('almaha_dropoffLoc', dropoffLoc);
+            localStorage.setItem('almaha_pickupDate', pickupDate);
+            localStorage.setItem('almaha_returnDate', returnDate);
+        });
+    }
+});
