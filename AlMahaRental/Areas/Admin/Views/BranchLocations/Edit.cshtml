@@ -1,0 +1,52 @@
+﻿@model AlMahaRental.Models.BranchLocation
+@{
+    ViewData["Title"] = "تعديل بيانات الفرع";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold" style="color: var(--text-main);">تعديل: @Model.Name</h2>
+    <a asp-action="Index" class="btn btn-secondary rounded-pill px-4 shadow-sm">
+        <i class="fa-solid fa-arrow-right me-2"></i> عودة للقائمة
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="premium-card p-4">
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger fw-bold mb-3"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label asp-for="Name" class="form-label fw-bold">اسم الفرع <span class="text-danger">*</span></label>
+                        <input asp-for="Name" class="form-control form-control-lg bg-light border-0" required />
+                        <span asp-validation-for="Name" class="text-danger small mt-1"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="PhoneNumber" class="form-label fw-bold">رقم الجوال</label>
+                        <input asp-for="PhoneNumber" class="form-control form-control-lg bg-light border-0" />
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="WorkingHours" class="form-label fw-bold">أوقات الدوام</label>
+                        <input asp-for="WorkingHours" class="form-control form-control-lg bg-light border-0" />
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="MapUrl" class="form-label fw-bold">رابط خريطة جوجل (Google Maps URL)</label>
+                        <input asp-for="MapUrl" type="url" class="form-control form-control-lg bg-light border-0" />
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <button type="submit" class="btn w-100 py-3 text-white fw-bold shadow" style="background: var(--accent-gradient); border-radius: 12px; font-size: 1.1rem;">
+                            <i class="fa-solid fa-save me-2"></i> تحديث البيانات
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

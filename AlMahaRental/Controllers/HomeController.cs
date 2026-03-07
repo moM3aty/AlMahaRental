@@ -126,6 +126,10 @@ namespace AlMahaRental.Controllers
         public IActionResult Jobs() => View();
         public IActionResult Services() => View();
         public IActionResult FAQ() => View();
-        public IActionResult OurLocations() => View();
+        public async Task<IActionResult> OurLocations()
+        {
+            var locations = await _context.BranchLocations.ToListAsync();
+            return View(locations);
+        }
     }
 }

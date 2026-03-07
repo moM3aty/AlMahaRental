@@ -1,180 +1,151 @@
-﻿@{
+﻿@model IEnumerable<AlMahaRental.Models.BranchLocation>
+@{
     ViewData["Title"] = "مواقع الفروع";
 }
 
+<style>
+    /* تصميم البطاقات البنفسجية المطابق للصورة */
+    .purple-location-card {
+        background: linear-gradient(135deg, #8b1866 0%, #6e1351 100%);
+        border-radius: 12px;
+        padding: 40px 20px;
+        color: #ffffff;
+        text-align: center;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+    }
+
+        /* تأثيرات هندسية في خلفية البطاقة */
+        .purple-location-card::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            transform: rotate(45deg);
+            z-index: 1;
+        }
+
+        .purple-location-card .icon-box-white {
+            background-color: #ffffff;
+            color: #8b1866;
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        .purple-location-card h5 {
+            font-weight: 800;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+            z-index: 2;
+        }
+
+        .purple-location-card p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            opacity: 0.95;
+            z-index: 2;
+        }
+
+        .purple-location-card .btn-white-purple {
+            background-color: #ffffff;
+            color: #8b1866;
+            font-weight: 800;
+            padding: 10px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            margin-top: 25px;
+            width: fit-content;
+            z-index: 2;
+        }
+
+            .purple-location-card .btn-white-purple:hover {
+                background-color: #f8f9fa;
+                transform: translateY(-2px);
+            }
+</style>
+
 <section class="services-header">
     <div class="container pt-5">
-
         <h2 data-ar="مواقع الفروع" data-en="Our Locations">
             مواقع الفروع
         </h2>
-
         <div class="fw-semibold">
-
-            <a href="/Home/Index" data-ar="الرئيسية" data-en="Home">
-                الرئيسية
-            </a>
-
+            <a href="/Home/Index" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
             <span>/</span>
-
-            <span data-ar="مواقع الفروع" data-en="Our Locations">
-                مواقع الفروع
-            </span>
-
+            <span data-ar="مواقع الفروع" data-en="Our Locations">مواقع الفروع</span>
         </div>
-
     </div>
 </section>
 
-<section class="contact py-5">
-    <div class="container pt-5">
-        <div class="heading text-center mb-5">
-
-            <h3 class="section-title text-purple" data-ar="اختر فرعك الأقرب"
-                data-en="Choose Your Nearest Branch">
+<section class="contact py-5 bg-light">
+    <div class="container pt-5 pb-5">
+        <div class="heading text-center mb-5 pb-3">
+            <h2 class="fw-bold mb-3" style="color: #8b1866;" data-ar="اختر فرعك الأقرب" data-en="Choose Your Nearest Branch">
                 اختر فرعك الأقرب
-            </h3>
-
+            </h2>
             <p class="text-muted fw-semibold"
-               data-ar="استأجر من أقرب فرع إليك بكل سهولة، واستمتع بخدمة سريعة وتجربة تأجير مريحة تلبي احتياجاتك."
-               data-en="Rent from the nearest branch with ease, and enjoy fast service and a comfortable rental experience that meets your needs.">
+               data-ar="استأجر من أقرب فرع إليك بكل سهولة، واستمتع بخدمة سريعة وتجربة تأجير مريحة تلبي احتياجاتك.">
                 استأجر من أقرب فرع إليك بكل سهولة، واستمتع بخدمة سريعة وتجربة تأجير مريحة تلبي احتياجاتك.
             </p>
-
-        </div>
-        <div class="row mt-5 g-4">
-            <div class="col-lg-4">
-                <div class="location-card">
-                    <div class="content">
-
-                        <div class="icon-box mb-3">
-                            <i class="fa-solid fa-building"></i>
-                        </div>
-
-                        <h5 class="mb-4" data-ar="عرعر - حي الربوة" data-en="Arar - Al Rabwah District">
-                            عرعر - حي الربوة
-                        </h5>
-
-                        <p data-ar="من الأحد إلى الخميس 8:00 ص - 4:30 م"
-                           data-en="Sunday to Thursday 8:00 AM - 4:30 PM">
-                            <i class="fas fa-clock"></i>
-                            من الأحد إلى الخميس 8:00 ص - 4:30 م
-                        </p>
-
-                        <p>
-                            <i class="fas fa-phone"></i>
-                            <span data-ar="0538439998" data-en="0538439998">
-                                0538439998
-                            </span>
-                        </p>
-
-                        <button class="btn-direction mt-3" data-ar="عرض الاتجاه" data-en="View Direction">
-                            عرض الاتجاه
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="location-card">
-                    <div class="content">
-
-                        <div class="icon-box mb-3">
-                            <i class="fas fa-building"></i>
-                        </div>
-
-                        <h5 class="mb-4" data-ar="عرعر - حي المساعدية" data-en="Arar - Al Musaidiyah District">
-                            عرعر - حي المساعدية
-                        </h5>
-
-                        <p data-ar="من الأحد إلى الخميس 8:00 ص - 4:30 م"
-                           data-en="Sunday to Thursday 8:00 AM - 4:30 PM">
-                            <i class="fas fa-clock"></i>
-                            من الأحد إلى الخميس 8:00 ص - 4:30 م
-                        </p>
-
-                        <p>
-                            <i class="fas fa-phone"></i>
-                            <span data-ar="0535089998" data-en="0535089998">
-                                0535089998
-                            </span>
-                        </p>
-
-                        <button class="btn-direction mt-3" data-ar="عرض الاتجاه" data-en="View Direction">
-                            عرض الاتجاه
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="location-card">
-                    <div class="content">
-
-                        <div class="icon-box mb-3">
-                            <i class="fas fa-building"></i>
-                        </div>
-
-                        <h5 class="mb-4" data-ar="عرعر - حي الناصرية" data-en="Arar - Al Nasiriyah District">
-                            عرعر - حي الناصرية
-                        </h5>
-
-                        <p data-ar="من الأحد إلى الخميس 8:00 ص - 4:30 م"
-                           data-en="Sunday to Thursday 8:00 AM - 4:30 PM">
-                            <i class="fas fa-clock"></i>
-                            من الأحد إلى الخميس 8:00 ص - 4:30 م
-                        </p>
-
-                        <p>
-                            <i class="fas fa-phone"></i>
-                            <span data-ar="0535459998" data-en="0535459998">
-                                0535459998
-                            </span>
-                        </p>
-
-                        <button class="btn-direction mt-3" data-ar="عرض الاتجاه" data-en="View Direction">
-                            عرض الاتجاه
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="location-card">
-                    <div class="content">
-
-                        <div class="icon-box mb-3">
-                            <i class="fas fa-building"></i>
-                        </div>
-
-                        <h5 class="mb-4" data-ar="عرعر - حي الجوهرة" data-en="Arar - Al Jawharah District">
-                            عرعر - حي الجوهرة
-                        </h5>
-
-                        <p data-ar="من الأحد إلى الخميس 8:00 ص - 4:30 م"
-                           data-en="Sunday to Thursday 8:00 AM - 4:30 PM">
-                            <i class="fas fa-clock"></i>
-                            من الأحد إلى الخميس 8:00 ص - 4:30 م
-                        </p>
-
-                        <p>
-                            <i class="fas fa-phone"></i>
-                            <span data-ar="0501709993" data-en="0501709993">
-                                0501709993
-                            </span>
-                        </p>
-
-                        <button class="btn-direction mt-3" data-ar="عرض الاتجاه" data-en="View Direction">
-                            عرض الاتجاه
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-
         </div>
 
+        <div class="row mt-4 g-4 justify-content-center">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var loc in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="purple-location-card">
+                            <div class="icon-box-white">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+
+                            <h5>@loc.Name</h5>
+
+                            <p>
+                                @(!string.IsNullOrEmpty(loc.WorkingHours) ? loc.WorkingHours : "متاح حسب الفرع")
+                            </p>
+
+                            <p dir="ltr" class="d-flex align-items-center justify-content-center">
+                                <!-- استخدام scaleX لقلب أيقونة التليفون لتطابق الصورة -->
+                                <i class="fas fa-phone mx-2" style="transform: scaleX(-1);"></i>
+                                <span>@(!string.IsNullOrEmpty(loc.PhoneNumber) ? loc.PhoneNumber : "غير متوفر")</span>
+                            </p>
+
+                            <div class="mt-auto">
+                                <a href="@(!string.IsNullOrEmpty(loc.MapUrl) ? loc.MapUrl : "#")" target="@(!string.IsNullOrEmpty(loc.MapUrl) ? "_blank" : "_self")" class="btn-white-purple d-inline-block" data-ar="عرض الاتجاه" data-en="View Direction">
+                                    عرض الاتجاه
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center py-5 my-5">
+                    <h4 class="text-muted">جاري تحديث مواقع الفروع قريباً...</h4>
+                </div>
+            }
+        </div>
     </div>
 </section>

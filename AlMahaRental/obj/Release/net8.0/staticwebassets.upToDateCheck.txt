@@ -1,7 +1,7 @@
 wwwroot\css\admin.css
 wwwroot\css\all.min.css
 wwwroot\css\bootstrap.min.css
-wwwroot\css\main.css
+wwwroot\images\jobs-3.webp
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\about-us.jpg
@@ -27,9 +27,9 @@ wwwroot\images\huawei.png
 wwwroot\images\icon-1.png
 wwwroot\images\icon-2.png
 wwwroot\images\icon-3.png
-wwwroot\images\jobs-1.jpg
 wwwroot\images\jobs-2.jpg
-wwwroot\images\jobs-3.webp
+wwwroot\images\jobs-1.jpg
+wwwroot\css\main.css
 wwwroot\images\logo-1.jpg
 wwwroot\images\logo.jpg
 wwwroot\images\our-mission.jpg

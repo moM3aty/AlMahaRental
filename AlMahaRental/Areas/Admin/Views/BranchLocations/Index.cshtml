@@ -16,37 +16,40 @@
         <table class="table table-hover align-middle mb-0">
             <thead class="table-light">
                 <tr>
-                    <th scope="col" class="ps-4">م</th>
-                    <th scope="col">اسم موقع الفرع (الاستلام والتسليم)</th>
+                    <th scope="col" class="ps-4">اسم الفرع</th>
+                    <th scope="col">رقم الجوال</th>
+                    <th scope="col">أوقات الدوام</th>
                     <th scope="col" class="text-center">الإجراءات</th>
                 </tr>
             </thead>
             <tbody>
                 @if (Model != null && Model.Any())
                 {
-                    int count = 1;
                     foreach (var loc in Model)
                     {
                         <tr>
-                            <td class="ps-4 fw-bold text-muted">@count</td>
-                            <td class="fw-bold text-dark fs-5">
+                            <td class="ps-4 fw-bold text-dark">
                                 <i class="fa-solid fa-location-dot text-primary me-2"></i> @loc.Name
                             </td>
+                            <td><span class="badge bg-light text-dark border">@loc.PhoneNumber</span></td>
+                            <td class="text-muted small">@loc.WorkingHours</td>
                             <td class="text-center">
-                                <form asp-action="Delete" asp-route-id="@loc.Id" method="post" onsubmit="return confirm('هل أنت متأكد من رغبتك في حذف هذا الفرع من القائمة؟');">
+                                <a asp-action="Edit" asp-route-id="@loc.Id" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold me-2">
+                                    <i class="fa-solid fa-pen me-1"></i> تعديل
+                                </a>
+                                <form asp-action="Delete" asp-route-id="@loc.Id" method="post" class="d-inline" onsubmit="return confirm('هل أنت متأكد من رغبتك في حذف هذا الفرع؟');">
                                     <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold">
-                                        <i class="fa-solid fa-trash me-1"></i> حذف الفرع
+                                        <i class="fa-solid fa-trash me-1"></i> حذف
                                     </button>
                                 </form>
                             </td>
                         </tr>
-                        count++;
                     }
                 }
                 else
                 {
                     <tr>
-                        <td colspan="3" class="text-center py-5 text-muted">
+                        <td colspan="4" class="text-center py-5 text-muted">
                             <i class="fa-solid fa-map-location-dot fs-1 mb-3 opacity-50"></i>
                             <h5>لم تقم بإضافة أي فروع حتى الآن</h5>
                         </td>

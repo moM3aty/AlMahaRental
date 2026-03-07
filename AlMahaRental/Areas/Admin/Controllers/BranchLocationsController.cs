@@ -18,20 +18,17 @@ namespace AlMahaRental.Areas.Admin.Controllers
             _context = context;
         }
 
-        // عرض قائمة الفروع
         public async Task<IActionResult> Index()
         {
             var locations = await _context.BranchLocations.ToListAsync();
             return View(locations);
         }
 
-        // صفحة إضافة فرع جديد
         public IActionResult Create()
         {
             return View();
         }
 
-        // حفظ الفرع الجديد
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(BranchLocation location)
@@ -45,7 +42,30 @@ namespace AlMahaRental.Areas.Admin.Controllers
             return View(location);
         }
 
-        // حذف الفرع
+        // --- التعديل هنا: إضافة وظائف التعديل (Edit) ---
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null) return NotFound();
+            var location = await _context.BranchLocations.FindAsync(id);
+            if (location == null) return NotFound();
+            return View(location);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, BranchLocation location)
+        {
+            if (id != location.Id) return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                _context.Update(location);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(location);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
